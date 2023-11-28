@@ -6,7 +6,7 @@
 #' 
 #' @author Nicole Torrie
 #' 
-#' @importFrom dplyr filter
+#' @importFrom dplyr filter %>%
 #' @importFrom lubridate as_datetime
 #' 
 #' @export
