@@ -1,3 +1,19 @@
+#' Create metadata log from Tracking Google sheet
+#'
+#' @param Tracking Dataframe created from downloaded CalVal Tracking Google sheet
+#'
+#' @return Returns metadata log with updated column names and new columns with deployment and retrieval datetime in Atlantic timezone
+#' 
+#' @author Nicole Torrie
+#' 
+#' @importFrom dplyr %>% mutate rename
+#' @importFrom lubridate as_date as_datetime
+#' 
+#' @export
+#'
+
+
+
 
 create_val_log <- function(Tracking){
   Tracking %>%
