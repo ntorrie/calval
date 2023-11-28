@@ -5,6 +5,9 @@
 #' @param SAL TRUE if Salinity data is present in the dataset
 #'
 #' @return a data frame of all test start and end times in utc
+#' 
+#' @author Nicole Torrie
+#' 
 #' @export 
 #'
 #' @examples
