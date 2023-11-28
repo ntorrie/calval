@@ -1,4 +1,15 @@
-#function to plot temp data colorized by sensor
+#' Plot TEMP validation data, colorize points by sensor serial #
+#'
+#' @param final_temp Dataframe filtered for temperature test data
+#'
+#' @return Returns a ggplot object of temperature validation data colorized based on sensor serial #
+#' 
+#' @author Nicole Torrie
+#' 
+#' @importFrom ggplot2 ggplot aes geom_point geom_line geom_ribbon labs guides guide_legend
+#' 
+#' @export
+#'
 
 ggplot_temp_val <- function(final_temp) {
   s <-

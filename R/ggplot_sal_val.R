@@ -12,8 +12,6 @@
 #'
 
 
-#function to plot sal data colorized by sensor
-
 ggplot_sal_val <- function(final_SAL) {
   u <-
     ggplot(final_SAL,

@@ -1,4 +1,15 @@
-#function to plot temp data colorized by temp flag
+#' Plot TEMP validation data, colorize points by Temp flag
+#'
+#' @param final_temp Dataframe filtered for temperature test data
+#'
+#' @return Returns a ggplot object of Temperature validation data colorized based on temp flag
+#' 
+#' @author Nicole Torrie
+#' 
+#' @importFrom ggplot2 ggplot aes geom_point scale_color_manual geom_line geom_ribbon labs
+#' 
+#' @export
+#'
 
 
 ggplot_temp_flag <- function(final_temp) {
