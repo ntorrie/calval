@@ -6,7 +6,7 @@
 #' 
 #' @author Nicole Torrie
 #' 
-#' @importFrom ggplot2 ggplot aes geom_point scale_color_manual geom_hline geom_ribbon
+#' @importFrom ggplot2 ggplot aes geom_point scale_color_manual geom_hline geom_ribbon labs
 #' 
 #' @export
 #'

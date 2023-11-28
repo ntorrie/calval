@@ -1,4 +1,15 @@
-#function to plot DO data colorized by sensor
+#' Plot DO validation data, colorize points by sensor serial #
+#'
+#' @param DO Dataframe filtered for dissolved oxygen percent saturation test data
+#'
+#' @return Returns a ggplot object of Dissolved Oxygen validation data colorized based on sensor serial #
+#' 
+#' @author Nicole Torrie
+#' 
+#' @importFrom ggplot2 ggplot aes geom_point geom_hline geom_ribbon labs
+#' 
+#' @export
+#'
 
 
 ggplot_do_val <- function(DO) {
