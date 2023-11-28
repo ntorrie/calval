@@ -4,6 +4,8 @@
 #'
 #' @return Returns SALstarttime_utc
 #' 
+#' @author Nicole Torrie
+#' 
 #' @importFrom dplyr filter
 #' @importFrom lubridate as_datetime
 #' 
@@ -28,6 +30,8 @@ assign_trim_start_sal <- function(Log){
 #' @param Log Metadata log with deployment_datetime column
 #'
 #' @return Returns SALendtime_utc
+#' 
+#' @author Nicole Torrie
 #' 
 #' @importFrom dplyr filter
 #' @importFrom lubridate as_datetime
