@@ -1,0 +1,30 @@
+---
+output: github_document
+editor_options: 
+  chunk_output_type: console
+---
+
+
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.path = "man/figures/README-",
+  out.width = "100%",
+  dpi = 600
+)
+
+library(badger)
+
+repo <- "ntorrie/calval"
+```
+
+The calval package contains a collection of functions to assist with the flagging and visualization of validation data collected during quality control testing of CMAR Coastal Monitoring Program sensors prior to sensor deployment. This quality control testing ensures all sensors are recording values within an acceptable range prior to sensor deployment.
+
+# calval
+
+```{r, echo=FALSE, out.width="25%", fig.align='center'}
+knitr::include_graphics("man/figures/README-calval_hexsticker.png")
+```
