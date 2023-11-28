@@ -1,5 +1,18 @@
-#to assign trim times for all variables at once
+#' Create table of test start and end times for each variable
+#'
+#' @param Temp TRUE if Temperature data is present in the dataset
+#' @param DO TRUE if Dissolved Oxygen data is present in the dataset
+#' @param SAL TRUE if Salinity data is present in the dataset
+#'
+#' @return a data frame of all test start and end times in utc
+#' @export 
+#'
+#' @examples
+#' trimtime_table <- assign_trim_times_all(Temp = TRUE, DO = TRUE, SAL = TRUE)
+#' 
+#' 
 
+#to assign trim times for all variables at once
 assign_trim_times_all <- function(Temp = TRUE,
                                   DO = TRUE,
                                   SAL = FALSE){
