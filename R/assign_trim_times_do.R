@@ -1,8 +1,10 @@
 #' Create variable for DO test start time in UTC 
 #'
-#' @param Log 
+#' @param Log Metadata log with deployment_datetime column
 #'
 #' @return Returns DOstarttime_utc
+#' 
+#' @author Nicole Torrie
 #' 
 #' @importFrom dplyr filter
 #' @importFrom lubridate as_datetime
@@ -25,9 +27,11 @@ assign_trim_start_do <- function(Log){
 
 #' Create variable for DO test end time in UTC
 #'
-#' @param Log 
+#' @param Log Metadata log with deployment_datetime column
 #'
 #' @return Returns DOendtime_utc
+#' 
+#' @author Nicole Torrie
 #' 
 #' @importFrom dplyr filter
 #' @importFrom lubridate as_datetime
