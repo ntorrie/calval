@@ -1,8 +1,12 @@
 #' Create variable for SAL test start time in UTC 
 #'
-#' @param Log 
+#' @param Log Metadata log with deployment_datetime column
 #'
 #' @return Returns SALstarttime_utc
+#' 
+#' @importFrom dplyr filter
+#' @importFrom lubridate as_datetime
+#' 
 #' @export
 #'
 
@@ -21,9 +25,13 @@ assign_trim_start_sal <- function(Log){
 
 #' Create variable for SAL test end time in UTC 
 #'
-#' @param Log 
+#' @param Log Metadata log with deployment_datetime column
 #'
 #' @return Returns SALendtime_utc
+#' 
+#' @importFrom dplyr filter
+#' @importFrom lubridate as_datetime
+#' 
 #' @export
 #'
 
