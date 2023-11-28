@@ -19,11 +19,6 @@ a data frame of all test start and end times in utc
 \description{
 Create table of test start and end times for each variable
 }
-\examples{
-trimtime_table <- assign_trim_times_all(Temp = TRUE, DO = TRUE, SAL = TRUE)
-
-
-}
 \author{
 Nicole Torrie
 }
