@@ -7,11 +7,14 @@
 assign_trim_start_do(Log)
 }
 \arguments{
-\item{Log}{}
+\item{Log}{Metadata log with deployment_datetime column}
 }
 \value{
 Returns DOstarttime_utc
 }
 \description{
 Create variable for DO test start time in UTC
+}
+\author{
+Nicole Torrie
 }

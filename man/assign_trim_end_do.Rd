@@ -7,11 +7,14 @@
 assign_trim_end_do(Log)
 }
 \arguments{
-\item{Log}{}
+\item{Log}{Metadata log with deployment_datetime column}
 }
 \value{
 Returns DOendtime_utc
 }
 \description{
 Create variable for DO test end time in UTC
+}
+\author{
+Nicole Torrie
 }

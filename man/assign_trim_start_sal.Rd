@@ -7,11 +7,14 @@
 assign_trim_start_sal(Log)
 }
 \arguments{
-\item{Log}{}
+\item{Log}{Metadata log with deployment_datetime column}
 }
 \value{
 Returns SALstarttime_utc
 }
 \description{
 Create variable for SAL test start time in UTC
+}
+\author{
+Nicole Torrie
 }

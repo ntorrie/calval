@@ -7,11 +7,14 @@
 assign_trim_end_sal(Log)
 }
 \arguments{
-\item{Log}{}
+\item{Log}{Metadata log with deployment_datetime column}
 }
 \value{
 Returns SALendtime_utc
 }
 \description{
 Create variable for SAL test end time in UTC
+}
+\author{
+Nicole Torrie
 }

@@ -24,3 +24,6 @@ trimtime_table <- assign_trim_times_all(Temp = TRUE, DO = TRUE, SAL = TRUE)
 
 
 }
+\author{
+Nicole Torrie
+}
