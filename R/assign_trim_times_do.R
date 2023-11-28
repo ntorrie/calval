@@ -3,6 +3,10 @@
 #' @param Log 
 #'
 #' @return Returns DOstarttime_utc
+#' 
+#' @importFrom dplyr filter
+#' @importFrom lubridate as_datetime
+#' 
 #' @export
 #'
 
@@ -24,6 +28,10 @@ assign_trim_start_do <- function(Log){
 #' @param Log 
 #'
 #' @return Returns DOendtime_utc
+#' 
+#' @importFrom dplyr filter
+#' @importFrom lubridate as_datetime
+#' 
 #' @export
 #'
 
