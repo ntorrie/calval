@@ -1,4 +1,16 @@
-#function to plot DO data colorized by DO flag
+#' Plot DO validation data, colorize points by DO flag
+#'
+#' @param DO Dataframe filtered for dissolved oxygen percent saturation test data
+#'
+#' @return Returns a ggplot object of Dissolved Oxygen validation data colorized based on DO flag
+#' 
+#' @author Nicole Torrie
+#' 
+#' @importFrom ggplot2 ggplot aes geom_point scale_color_manual geom_hline geom_ribbon
+#' 
+#' @export
+#'
+
 
 
 ggplot_do_flag <- function(DO) {
