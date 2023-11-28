@@ -1,4 +1,16 @@
-#function to plot sal data colorized by sal flag
+#' Plot SAL validation data, colorize points by SAL flag
+#'
+#' @param final_SAL Dataframe filtered for salinity test data
+#'
+#' @return Returns a ggplot object of Salinity validation data colorized based on SAL flag
+#' 
+#' @author Nicole Torrie
+#' 
+#' @importFrom ggplot2 ggplot aes geom_point scale_color_manual geom_line geom_ribbon labs
+#' 
+#' @export
+#'
+
 
 
 ggplot_sal_flag <- function(final_SAL) {

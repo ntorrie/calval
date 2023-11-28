@@ -1,3 +1,17 @@
+#' Plot SAL validation data, colorize points by sensor serial #
+#'
+#' @param final_SAL Dataframe filtered for salinity test data
+#'
+#' @return Returns a ggplot object of Salinity validation data colorized based on sensor serial #
+#' 
+#' @author Nicole Torrie
+#' 
+#' @importFrom ggplot2 ggplot aes geom_point geom_line geom_ribbon labs guides guide_legend
+#' 
+#' @export
+#'
+
+
 #function to plot sal data colorized by sensor
 
 ggplot_sal_val <- function(final_SAL) {
