@@ -6,7 +6,7 @@
 #' 
 #' @author Nicole Torrie
 #' 
-#' @importFrom dplyr distinct rename
+#' @importFrom dplyr distinct rename %>%
 #' 
 #' @export
 #'
