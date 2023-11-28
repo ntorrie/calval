@@ -1,10 +1,9 @@
 Package: calval
-Title: What the Package Does (One Line, Title Case)
+Title: Validate Calibrated Sensor Performance
 Version: 0.0.0.9000
 Authors@R: 
-    person("First", "Last", , "first.last@example.com", role = c("aut", "cre"),
-           comment = c(ORCID = "YOUR-ORCID-ID"))
-Description: What the package does (one paragraph).
+    person("Nicole", "Torrie", , "ntorrie@perennia.ca", role = c("aut", "cre"))
+Description: Facilitates flagging and visualization of data collected during sensor validation tests of Water Quality sensors for CMAR's Coastal Monitoring Program.(Compatible sensors: Hobo Pro V2, Hobo DO, aquaMeasure DOT, aquaMeasure SAL). Functions allow researchers to ensure sensors are operating within an acceptable range prior to, and after, sensor deployment.
 License: `use_mit_license()`, `use_gpl3_license()` or friends to pick a
     license
 Encoding: UTF-8
