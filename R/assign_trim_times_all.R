@@ -17,11 +17,17 @@
 #to assign trim times for all variables at once
 assign_trim_times_all <- function(Temp = TRUE,
                                   DO = TRUE,
+                                  HDO = FALSE,
                                   SAL = FALSE){
   
   if(Temp == TRUE){
     TEMPstarttime_utc <- assign_trim_start_temp(Log)
     TEMPendtime_utc <- assign_trim_end_temp(Log)
+  }
+  
+  if(HDO == TRUE){
+    HDOstarttime_utc <- assign_trim_start_hdo(Log)
+    HDOendtime_utc <- assign_trim_end_hdo(Log)
   }
   
   if(DO == TRUE){
@@ -39,6 +45,8 @@ assign_trim_times_all <- function(Temp = TRUE,
       TimeVariable = c(
         'TEMPstarttime_utc',
         'TEMPendtime_utc',
+        'HDOstarttime_utc',
+        'HDOendtime_utc',
         'DOstarttime_utc',
         'DOendtime_utc',
         'SALstarttime_utc',
@@ -47,6 +55,8 @@ assign_trim_times_all <- function(Temp = TRUE,
       DateTime = c(
         TEMPstarttime_utc,
         TEMPendtime_utc,
+        HDOstarttime_utc,
+        HDOendtime_utc,
         DOstarttime_utc,
         DOendtime_utc,
         SALstarttime_utc,

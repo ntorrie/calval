@@ -4,7 +4,7 @@
 \alias{assign_trim_times_all}
 \title{Create table of test start and end times for each variable}
 \usage{
-assign_trim_times_all(Temp = TRUE, DO = TRUE, SAL = FALSE)
+assign_trim_times_all(Temp = TRUE, DO = TRUE, HDO = FALSE, SAL = FALSE)
 }
 \arguments{
 \item{Temp}{TRUE if Temperature data is present in the dataset}
