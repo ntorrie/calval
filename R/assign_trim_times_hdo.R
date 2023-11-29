@@ -40,7 +40,7 @@ assign_trim_start_hdo <- function(Log){
 #'
 
 
-assign_trim_end_HDO <- function(Log){
+assign_trim_end_hdo <- function(Log){
   HDOLog <- filter(Log, validation_variable == "DO", Logger_Model == "HOBO DO") %>%
     filter(row_number()==1)
   HDOendtime_utc <- as_datetime(HDOLog$retrieval_datetime, tz = "UTC")
