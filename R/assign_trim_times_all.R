@@ -1,7 +1,8 @@
 #' Create table of test start and end times for each variable
 #'
 #' @param Temp TRUE if Temperature data is present in the dataset
-#' @param DO TRUE if Dissolved Oxygen data is present in the dataset
+#' @param HDO TRUE if Hobo DO mg/l Dissolved Oxygen data is present in the dataset
+#' @param DO TRUE if Dissolved Oxygen percent saturation data is present in the dataset
 #' @param SAL TRUE if Salinity data is present in the dataset
 #'
 #' @return a data frame of all test start and end times in utc
