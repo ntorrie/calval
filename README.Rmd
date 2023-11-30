@@ -29,6 +29,7 @@ knitr::include_graphics("man/figures/README-calval_hexsticker.png")
 
 <!-- badges: start -->
 [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
+[![R-CMD-check](https://github.com/ntorrie/calval/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/ntorrie/calval/actions/workflows/R-CMD-check.yaml)
 <!-- badges: end -->
 
 The calval package contains a collection of functions to assist with the flagging and visualization of validation data collected during quality assurance testing of CMAR Coastal Monitoring Program sensors prior to sensor deployment. This quality assurance testing ensures all sensors are recording values within an acceptable range prior to sensor deployment.
