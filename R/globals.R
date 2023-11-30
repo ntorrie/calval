@@ -59,7 +59,7 @@ utils::globalVariables(c(
   "dissolved_oxygen_uncorrected_mg_per_l",
   "median",
   "salinity_psu",
-  "temperature_degree_c",
+  "temperature_degree_c"
   
 
   ))
