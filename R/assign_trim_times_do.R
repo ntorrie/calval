@@ -19,7 +19,7 @@
 #Add 4 hrs to convert from AST (dst false)
 
 assign_trim_start_do <- function(Log){
-  DOLog <- filter(Log, validation_variable == "DO") %>%
+  DOLog <- filter(Log, validation_variable == "DO", Logger_Model == "aquaMeasure DOT") %>%
     filter(row_number()==1)
   DOstarttime_utc <- as_datetime(DOLog$deployment_datetime, tz = "UTC")
 }
@@ -41,7 +41,7 @@ assign_trim_start_do <- function(Log){
 
 
 assign_trim_end_do <- function(Log){
-  DOLog <- filter(Log, validation_variable == "DO") %>%
+  DOLog <- filter(Log, validation_variable == "DO", Logger_Model == "aquaMeasure DOT") %>%
     filter(row_number()==1)
   DOendtime_utc <- as_datetime(DOLog$retrieval_datetime, tz = "UTC")
 }
