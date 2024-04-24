@@ -23,7 +23,10 @@ ggplot_temp_val <- function(final_temp) {
     geom_line(aes(y = median), color = "black") +
     geom_ribbon(aes(ymin = median - 0.2, ymax = median + 0.2),
                 alpha = 0.3,
-                color = NA) 
+                color = "grey87") +
+    geom_ribbon(aes(ymin = median - 0.5, ymax = median + 0.5),
+                alpha = 0.3,
+                color = "grey87") 
   
   
   s <- s  + labs(color = 'sensor_serial_number') +
