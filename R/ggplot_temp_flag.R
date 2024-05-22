@@ -1,6 +1,7 @@
 #' Plot TEMP validation data, colorize points by Temp flag
 #'
 #' @param final_temp Dataframe filtered for temperature test data
+#' @param size Argument to set size of ggplot points
 #'
 #' @return Returns a ggplot object of Temperature validation data colorized based on temp flag
 #' 
@@ -13,7 +14,8 @@
 
 
 
-ggplot_temp_flag <- function(final_temp) {
+ggplot_temp_flag <- function(final_temp, 
+                             size = 0.75) {
   r <-
     ggplot(final_temp,
            aes(
@@ -21,7 +23,7 @@ ggplot_temp_flag <- function(final_temp) {
              y = temperature_degree_c,
              color = as.factor(FLAG)
            )) +
-    geom_point(size = 0.25) +
+    geom_point(size = size) +
     scale_color_manual(values = c('Green', 'Red')) +
     geom_line(aes(y = median), color = "black") +
     geom_ribbon(aes(ymin = median - 0.2, ymax = median + 0.2),

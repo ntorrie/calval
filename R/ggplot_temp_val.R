@@ -1,6 +1,7 @@
 #' Plot TEMP validation data, colorize points by sensor serial #
 #'
 #' @param final_temp Dataframe filtered for temperature test data
+#' @param size Argument to set size of ggplot points
 #'
 #' @return Returns a ggplot object of temperature validation data colorized based on sensor serial #
 #' 
@@ -11,7 +12,8 @@
 #' @export
 #'
 
-ggplot_temp_val <- function(final_temp) {
+ggplot_temp_val <- function(final_temp, 
+                            size = 0.75) {
   s <-
     ggplot(final_temp,
            aes(
@@ -19,7 +21,7 @@ ggplot_temp_val <- function(final_temp) {
              y = temperature_degree_c,
              color = as.factor(sensor_serial_number)
            )) +
-    geom_point(size = 0.5) +
+    geom_point(size = size) +
     geom_line(aes(y = median), color = "black") +
     geom_ribbon(aes(ymin = median - 0.2, ymax = median + 0.2),
                 alpha = 0.3,
