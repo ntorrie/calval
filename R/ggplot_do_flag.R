@@ -1,7 +1,7 @@
 #' Plot DO validation data, colorize points by DO flag
 #'
 #' @param DO Dataframe filtered for dissolved oxygen percent saturation test data
-#' @param size to set size of ggplot points
+#' @param point_size to set size of ggplot points
 #'
 #' @return Returns a ggplot object of Dissolved Oxygen validation data colorized based on DO flag
 #' 
@@ -15,7 +15,7 @@
 
 
 ggplot_do_flag <- function(DO,
-                           size = 0.75) {
+                           point_size = 0.75) {
   q <-
     ggplot(
       DO,
@@ -25,7 +25,7 @@ ggplot_do_flag <- function(DO,
         color = as.factor(FLAG)
       )
     ) +
-    geom_point(size = size) +
+    geom_point(size = point_size) +
     scale_color_manual(values = c('Green', 'Red')) +
     geom_hline(yintercept = 95) +
     geom_hline(yintercept = 105) +

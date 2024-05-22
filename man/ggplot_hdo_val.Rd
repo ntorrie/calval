@@ -4,10 +4,12 @@
 \alias{ggplot_hdo_val}
 \title{Plot HOBO DO validation data, colorize points by sensor serial #}
 \usage{
-ggplot_hdo_val(final_HDO)
+ggplot_hdo_val(final_HDO, point_size = 0.75)
 }
 \arguments{
 \item{final_HDO}{Dataframe filtered for HOBO DO test data}
+
+\item{point_size}{to set size of ggplot points}
 }
 \value{
 Returns a ggplot object of HOBO DO validation data colorized based on sensor serial #

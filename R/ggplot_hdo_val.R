@@ -1,6 +1,7 @@
 #' Plot HOBO DO validation data, colorize points by sensor serial #
 #'
 #' @param final_HDO Dataframe filtered for HOBO DO test data
+#' @param point_size to set size of ggplot points
 #'
 #' @return Returns a ggplot object of HOBO DO validation data colorized based on sensor serial #
 #' 
@@ -11,7 +12,8 @@
 #' @export
 #'
 
-ggplot_hdo_val <- function(final_HDO) {
+ggplot_hdo_val <- function(final_HDO,
+                           point_size = 0.75) {
   w <-
     ggplot(final_HDO,
            aes(
@@ -19,7 +21,7 @@ ggplot_hdo_val <- function(final_HDO) {
              y = dissolved_oxygen_uncorrected_mg_per_l,
              color = as.factor(sensor_serial_number)
            )) +
-    geom_point(size = 0.25) +
+    geom_point(size = point_size) +
     geom_line(aes(y = median), color = "black") +
     geom_ribbon(aes(ymin = median - 0.2, ymax = median + 0.2),
                 alpha = 0.3,

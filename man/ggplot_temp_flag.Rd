@@ -4,12 +4,12 @@
 \alias{ggplot_temp_flag}
 \title{Plot TEMP validation data, colorize points by Temp flag}
 \usage{
-ggplot_temp_flag(final_temp, size = 0.75)
+ggplot_temp_flag(final_temp, point_size = 0.75)
 }
 \arguments{
 \item{final_temp}{Dataframe filtered for temperature test data}
 
-\item{size}{Argument to set size of ggplot points}
+\item{point_size}{Argument to set size of ggplot points}
 }
 \value{
 Returns a ggplot object of Temperature validation data colorized based on temp flag
