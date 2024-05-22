@@ -4,10 +4,12 @@
 \alias{ggplot_do_flag}
 \title{Plot DO validation data, colorize points by DO flag}
 \usage{
-ggplot_do_flag(DO)
+ggplot_do_flag(DO, size = 0.75)
 }
 \arguments{
 \item{DO}{Dataframe filtered for dissolved oxygen percent saturation test data}
+
+\item{size}{to set size of ggplot points}
 }
 \value{
 Returns a ggplot object of Dissolved Oxygen validation data colorized based on DO flag
