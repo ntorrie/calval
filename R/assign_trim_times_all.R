@@ -24,21 +24,33 @@ assign_trim_times_all <- function(Temp = TRUE,
   if(Temp == TRUE){
     TEMPstarttime_utc <- assign_trim_start_temp(Log)
     TEMPendtime_utc <- assign_trim_end_temp(Log)
+  } else{
+    TEMPstarttime_utc <- NA
+    TEMPendtime_utc <- NA
   }
   
   if(HDO == TRUE){
     HDOstarttime_utc <- assign_trim_start_hdo(Log)
     HDOendtime_utc <- assign_trim_end_hdo(Log)
+  } else{
+    HDOstarttime_utc <- NA
+    HDOendtime_utc <- NA
   }
   
   if(DO == TRUE){
     DOstarttime_utc <- assign_trim_start_do(Log)
     DOendtime_utc <- assign_trim_end_do(Log)
+  } else{
+    DOstarttime_utc <- NA
+    DOendtime_utc <- NA
   }
   
   if(SAL == TRUE){
     SALstarttime_utc <- assign_trim_start_sal(Log)
     SALendtime_utc <- assign_trim_end_sal(Log)
+  } else{
+    SALstarttime_utc <- NA
+    SALendtime_utc <- NA
   }
   
   trimtime_list <-
