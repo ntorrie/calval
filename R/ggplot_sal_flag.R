@@ -26,7 +26,7 @@ ggplot_sal_flag <- function(final_SAL,
     geom_point(size = point_size) +
     scale_color_manual(values = c('Green', 'Red')) +
     geom_line(aes(y = median), color = "black") +
-    geom_ribbon(aes(ymin = median - 0.2, ymax = median + 0.2),
+    geom_ribbon(aes(ymin = median - 1, ymax = median + 1),
                 alpha = 0.3,
                 color = NA)
   
