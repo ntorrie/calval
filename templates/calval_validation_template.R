@@ -13,8 +13,8 @@
 # Vemco data must be extracted and placed in a folder on the path called "Vemco"
 
 # Install the most recent calval package version
-library(devtools)
-install_github("ntorrie/calval", force = TRUE, dependencies = TRUE)
+#library(devtools)
+#install_github("ntorrie/calval", force = TRUE, dependencies = TRUE)
 #library(miceadds) #or source all functions
 #source.all("C:/Users/Nicole Torrie/Documents/R/packages/calval/R")
 
@@ -26,8 +26,8 @@ library(lubridate)
 library(data.table)
 
 # Set the validation ID
-#VALID <- "VAL0047" #example 
-VALID <- "VAL0045"
+#VALID <- "VAL0047" #VR2, hobo temp example - rounding interval issues
+VALID <- "VAL0045" #VR2, hobo temp, and aquaMeasure DOT good example
 
 # Set the path to the folder with validation data
 path <-
@@ -54,7 +54,7 @@ Log <- create_val_log(Tracking)
 # Set the variable to "TRUE" if the data type is present in the validation dataset
 # TODO: can this part be automated based on the "validation variable" tracking sheet col?
 trimtime_table <- assign_trim_times_all(Temp = TRUE,
-                                        DO = TRUE,
+                                        DO = FALSE,
                                         HDO = FALSE,
                                         SAL = FALSE)
 
@@ -124,11 +124,11 @@ final_temp <-
   )
 
 # Plot final_temp colorized by flag (0 = pass)
-r <- ggplot_temp_flag(final_temp, point_size = 0.75)
+r <- ggplot_temp_flag(final_temp, point_size = 1.5)
 r
 
 # Plot final_temp colorized by sensor
-s <- ggplot_temp_val(final_temp, point_size = 0.5)
+s <- ggplot_temp_val(final_temp, point_size = 1.5)
 s
 
 # Calculate what percent of the time each sensor is outside an "acceptable" range
