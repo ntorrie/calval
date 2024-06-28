@@ -56,10 +56,20 @@ log <- create_val_log(tracking)
 # Create table of test start/end times for each variable
 # Set the variable to "TRUE" if the data type is present in the validation dataset
 # TODO: can this part be automated based on the "validation variable" tracking sheet col?
-trimtime_table <- assign_trim_times_all(Temp = TRUE,
-                                        DO = FALSE,
-                                        HDO = FALSE,
-                                        SAL = FALSE)
+
+# Get a list of variables measured in this validation event
+val_var_list <-
+  tracking %>%
+  # Get the sensor models and modify HOBO DO variable into HDO
+  distinct(`sensor model`, `validation variable`) %>%
+  mutate(`validation variable` = case_when(`sensor model` == "HOBO DO" ~ "HDO",
+         .default = `validation variable`)) %>%
+  # Get only validation variables
+  distinct(`validation variable`) %>%
+  pull(`validation variable`)
+  
+#source("R/assign_trim_times_all.R") # had to source directly to test
+trimtime_table <- assign_trim_times_all(var_list = val_var_list)
 # Could probably put this line into assign_trim_times_all()
 trimtime_table <- pivot_wider(trimtime_table, names_from = TimeVariable, values_from = DateTime)
 
