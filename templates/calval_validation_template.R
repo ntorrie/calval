@@ -5,18 +5,18 @@
 
 # Code to visualize pre and post deployment validation data
 
+
+# SET UP -----------------------------------------------------------------------
 # Create an empty folder called "Log" on the path
 # Hobo data must be extracted and placed in a folder on the path called "Hobo"
 # aquaMeasure data must be extracted and placed in a folder on the path called "aquaMeasure"
 # Vemco data must be extracted and placed in a folder on the path called "Vemco"
 
-
-# SET UP -----------------------------------------------------------------------
 # Install the most recent calval package version
 library(devtools)
 install_github("ntorrie/calval", force = TRUE, dependencies = TRUE)
-library(miceadds) #to source all functions
-source.all("C:/Users/Nicole Torrie/Documents/R/packages/calval/R")
+#library(miceadds) #or source all functions
+#source.all("C:/Users/Nicole Torrie/Documents/R/packages/calval/R")
 
 # Load libraries
 library(calval)
@@ -26,7 +26,8 @@ library(lubridate)
 library(data.table)
 
 # Set the validation ID
-VALID <- "POST0016"
+#VALID <- "VAL0047" #example 
+VALID <- "VAL0045"
 
 # Set the path to the folder with validation data
 path <-
@@ -51,12 +52,14 @@ Log <- create_val_log(Tracking)
 
 # Create table of test start/end times for each variable
 # Set the variable to "TRUE" if the data type is present in the validation dataset
+# TODO: can this part be automated based on the "validation variable" tracking sheet col?
 trimtime_table <- assign_trim_times_all(Temp = TRUE,
                                         DO = TRUE,
                                         HDO = FALSE,
-                                        SAL = TRUE)
+                                        SAL = FALSE)
 
-# Apply final Log edits for data processing 
+# Apply final Log edits for data processing
+# TODO: should this be part of the create_val_log function?
 cleaned_log <- clean_log_all(Log)
 
 # Write log to shared drive folder
@@ -81,7 +84,6 @@ ss_ggplot_variables(VALraw)
 #         from the trimtime_table. Reduce code. 
 #       Create function to standardize the sampling interval based on user input
 #         of sensor types and interval to set to
-TEMPraw <- VALraw
 
 # Set the temperature test start and end times
 TEMPstarttime_utc <- (trimtime_table %>%
@@ -95,7 +97,7 @@ TEMPendtime_utc <- (trimtime_table %>%
 # TEMPendtime_utc <- as_datetime("2023-11-16 13:40:00", tz = "UTC")
 
 # Filter for just temp variable and temp test time range
-TEMP <- filter(TEMPraw, `temperature_degree_c` != "NA") %>%
+TEMP <- filter(VALraw, `temperature_degree_c` != "NA") %>%
   filter(timestamp_utc > TEMPstarttime_utc &
            timestamp_utc < TEMPendtime_utc)
 
@@ -136,7 +138,7 @@ PercentT <- final_temp %>%
 print(PercentT)
 
 
-# FLAGGING aquaMeasure DO DATA -------------------------------------------------
+# FLAGGING DO PERCENT SATURATION DATA ------------------------------------------
 # TODO: Figure out a more eloquent way to select the start/end times
 #         from the trimtime_table. Reduce code. 
 # Set the aquaMeasure DO test start and end times
@@ -185,7 +187,7 @@ PercentDO <- final_DO %>%
 print(PercentDO)
 
 
-# FLAGGING HOBO DO DATA---------------------------------------------------------
+# FLAGGING DO CONCENTRATION DATA------------------------------------------------
 # TODO: Figure out a more eloquent way to select the start/end times
 #         from the trimtime_table. Reduce code. 
 # Set the HOBO DO test start and end times
@@ -203,12 +205,12 @@ HDOendtime_utc <- (trimtime_table %>%
 HDO <- filter(VALraw, `dissolved_oxygen_uncorrected_mg_per_l` != "NA") %>%
   filter(timestamp_utc > HDOstarttime_utc & timestamp_utc < HDOendtime_utc)
 
-# Create new column rounding timestamps to nearest 15 minutes and calculate 
+# Create new column rounding timestamps to nearest 10 minutes and calculate 
 #   median value for each time grouping. Then populate the flag column
 # TODO: Can any of this code be more "behind the scenes" to reduce script?
 #       Maybe a function so you can still set the rounding interval and accuracy?
 HDO <- HDO %>%
-  mutate(rounddate = round_date(timestamp_utc, unit = "15 minutes"))
+  mutate(rounddate = round_date(timestamp_utc, unit = "10 minutes"))
 
 hdo_medians <- HDO %>%
   group_by(rounddate) %>%
@@ -294,8 +296,14 @@ print(PercentS)
 
 
 
-# OTHER CODE--------------------------------------------------------------------
-# If sensors are recording on different intervals, standardize the interval
+
+
+# EXTRA CODE--------------------------------------------------------------------
+# TODO: add a new section with a VR2 test, select one observation/hr for every
+#       sensor type for median calculation. Test all other temp sensors as usual 
+
+
+#If sensors are recording on different intervals, standardize the interval
 # VR2AR <- VALraw %>%
 #   filter(sensor_type == "vr2ar") %>%
 #   slice(which(row_number() %% 10 == 1))
