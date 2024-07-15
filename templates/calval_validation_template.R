@@ -4,32 +4,28 @@
 # calval version: 
 
 # Code to visualize pre and post deployment validation data
-
-
 # SET UP -----------------------------------------------------------------------
 # Create an empty folder called "Log" on the path
-# Hobo data must be extracted and placed in a folder on the path called "Hobo"
-# aquaMeasure data must be extracted and placed in a folder on the path called "aquaMeasure"
-# Vemco data must be extracted and placed in a folder on the path called "Vemco"
+# Hobo data must be extracted and placed in a folder on the path called "hobo"
+# aquaMeasure data must be extracted and placed in a folder on the path called "aquameasure"
+# Vemco data must be extracted and placed in a folder on the path called "vemco"
 
 # Install the most recent calval package version
 #library(devtools)
 #install_github("ntorrie/calval", force = TRUE, dependencies = TRUE)
-#library(miceadds) #or source all functions
-#source.all("C:/Users/Nicole Torrie/Documents/R/packages/calval/R")
+library(miceadds) #or source all functions
+source.all("C:/Users/Nicole Torrie/Documents/R/packages/calval/R")
 
 # Load libraries
 library(calval)
-# RW: I remember Danielle telling me that it's better not to load the whole 
-#tidyverse at once, just the specific packages in use
-library(tidyverse)
+#library(tidyverse)
+library(dplyr)
 library(sensorstrings)
 library(lubridate)
 library(data.table)
 
 # Set the validation ID
-#VALID <- "VAL0047" #VR2, hobo temp example - rounding interval issues
-VALID <- "VAL0045" #VR2, hobo temp, and aquaMeasure DOT good example
+VALID <- "VAL0045"
 
 # Set the path to the folder with validation data
 path <-
@@ -40,23 +36,20 @@ path <-
 
 ## CONSTRUCT METADATA LOG AND DEFINE VARIABLES----------------------------------
 # Allow access to the Calibration/Validation Tracking Google sheet
-googlesheets4::gs4_deauth()
+#googlesheets4::gs4_deauth()
 sheet = ifelse(str_detect(VALID, "^POST"),
                "Post Deployment Validation",
                "Pre Deployment CalVal")
 link <-"https://docs.google.com/spreadsheets/d/1u1beyNL02NQvMblhkpGX9tazRqlhfZaJbzifvOKNP54/edit#gid=0"
 
 # Create metadata log from Tracking Google sheet
-# RW: Variable naming consistency with capital letters versus all lowercase?
 tracking <- googlesheets4::read_sheet(link, sheet = sheet, col_types = "c") %>%
   filter(`validation event id` == VALID)
 
 log <- create_val_log(tracking) 
 
 # Create table of test start/end times for each variable
-# Set the variable to "TRUE" if the data type is present in the validation dataset
 # TODO: can this part be automated based on the "validation variable" tracking sheet col?
-
 # Get a list of variables measured in this validation event
 val_var_list <-
   tracking %>%
@@ -68,8 +61,9 @@ val_var_list <-
   distinct(`validation variable`) %>%
   pull(`validation variable`)
   
-#source("R/assign_trim_times_all.R") # had to source directly to test
-trimtime_table <- assign_trim_times_all(var_list = val_var_list)
+source("R/assign_trim_times_all.R") # had to source directly to test
+trimtime_table <- assign_trim_times_all(var_list = val_var_list,
+                                        log = log)
 # Could probably put this line into assign_trim_times_all()
 trimtime_table <- pivot_wider(trimtime_table, names_from = TimeVariable, values_from = DateTime)
 
