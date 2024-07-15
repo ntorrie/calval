@@ -19,9 +19,12 @@ source.all("C:/Users/Nicole Torrie/Documents/R/packages/calval/R")
 # Load libraries
 library(calval)
 library(dplyr)
+library(stringr)
+library(tidyr)
 library(sensorstrings)
 library(lubridate)
 library(data.table)
+library(ggplot2)
 
 # Set the validation ID
 VALID <- "VAL0045"
@@ -50,7 +53,7 @@ log <- create_val_log(tracking)
 # Get a list of variables measured in this validation event
 val_var_list <-
   tracking %>%
-  # Get the sensor models and modify HOBO DO variable into HDO
+  # Get the sensor models and modify HOBO DO sensor model into HDO
   distinct(`sensor model`, `validation variable`) %>%
   mutate(`validation variable` = case_when(`sensor model` == "HOBO DO" ~ "HDO",
          .default = `validation variable`)) %>%
@@ -88,19 +91,16 @@ ss_ggplot_variables(raw_val_data)
 
 
 # FLAGGING TEMP DATA -----------------------------------------------------------
-# TODO: Figure out a more eloquent way to select the temp start/end times
-#         from the trimtime_table. Reduce code. 
-#       Create function to standardize the sampling interval based on user input
-#         of sensor types and interval to set to
-
-# Manually adjust temp start or end time after viewing data if necessary
-# TEMPstarttime_utc <- as_datetime("2024-05-13 14:00:00", tz = "UTC")
-# TEMPendtime_utc <- as_datetime("2023-11-16 13:40:00", tz = "UTC")
-
 # Filter for just temp variable and temp test time range
 temp_data <- filter(raw_val_data, `temperature_degree_c` != "NA") %>%
-  filter(timestamp_utc > trimtime_table$TEMPstarttime_utc &
-           timestamp_utc < trimtime_table$TEMPendtime_utc)
+  filter(
+    timestamp_utc > trimtime_table$temp_starttime_utc &
+      timestamp_utc < trimtime_table$temp_endtime_utc
+  )
+
+# Manually adjust temp start or end time after viewing data if necessary
+# temp_starttime_utc <- as_datetime("2024-05-13 14:00:00", tz = "UTC")
+# temp_endtime_utc <- as_datetime("2023-11-16 13:40:00", tz = "UTC")
 
 # Create new column rounding timestamps to nearest 15 minutes and calculate 
 #   median value for each time grouping. Then populate the flag column
@@ -117,7 +117,7 @@ final_temp <-
   merge(temp_data, medians, by = "rounddate", all.x = TRUE) %>%
   mutate(accuracy = if_else(sensor_type == "vr2ar", 0.5, 0.2)) %>%
   mutate(
-    FLAG = case_when(
+    flag = case_when(
       temperature_degree_c > median + accuracy |
         temperature_degree_c < median - accuracy ~ 1,
       TRUE ~ as.numeric(0)
@@ -133,10 +133,72 @@ s <- ggplot_temp_val(final_temp, point_size = 1.5)
 s
 
 # Calculate what percent of the time each sensor is outside an "acceptable" range
-percent_time_temp_out_of_range <- final_temp %>%
+temperature_results <- final_temp %>%
   group_by(sensor_serial_number) %>%
-  summarise('Percent Bad T' = (sum(FLAG)) / (count = n())*100)
-print(percent_time_temp_out_of_range)
+  summarise('percent_temp_failure' = (sum(flag)) / (count = n())*100)
+print(temperature_results)
+
+
+# FLAGGING VR2AR TEMP DATA -----------------------------------------------------------
+# Filter for just temp variable and temp test time range
+temp_data <- filter(raw_val_data, `temperature_degree_c` != "NA") %>%
+  filter(
+    timestamp_utc > trimtime_table$temp_starttime_utc &
+      timestamp_utc < trimtime_table$temp_endtime_utc
+  )
+
+# Manually adjust temp start or end time after viewing data if necessary
+# temp_starttime_utc <- as_datetime("2024-05-13 14:00:00", tz = "UTC")
+# temp_endtime_utc <- as_datetime("2023-11-16 13:40:00", tz = "UTC")
+
+# Create new column rounding timestamps to nearest 60 minutes and calculate 
+#   median value for each time grouping. Then populate the flag column
+# TODO: Can any of this code be more "behind the scenes" to reduce script?
+#       Maybe a function so you can still set the rounding interval and accuracy?
+
+#separate each data type out to slice to one observation/hr
+vr2ar_data <- temp_data %>%
+  filter(sensor_type == "vr2ar") 
+
+#select one of every 4 hobo observations (assumes 4 observations/hr)
+hobo_slice <- filter(temp_data, sensor_type == "hobo") %>%
+  slice(which(row_number() %% 4 == 1))
+
+#select one of every 6 aquameasure observations (assumes 6 observations/hr)
+aquaMeasure_slice <- filter(temp_data, sensor_type == "aquameasure")%>%
+  slice(which(row_number() %% 6 == 1))
+
+temp_data <- bind_rows(vr2ar_data, hobo_slice, aquaMeasure_slice) %>%
+  mutate(rounddate = round_date(timestamp_utc, unit = "60 minutes"))
+
+medians <- temp_data %>%
+  group_by(rounddate) %>%
+  summarise_at(vars(temperature_degree_c), list(median = median))
+
+final_temp <-
+  merge(temp_data, medians, by = "rounddate", all.x = TRUE) %>%
+  mutate(accuracy = if_else(sensor_type == "vr2ar", 0.5, 0.2)) %>%
+  mutate(
+    flag = case_when(
+      temperature_degree_c > median + accuracy |
+        temperature_degree_c < median - accuracy ~ 1,
+      TRUE ~ as.numeric(0)
+    )
+  )
+
+# Plot final_temp colorized by flag (0 = pass)
+r <- ggplot_temp_flag(final_temp, point_size = 1.5)
+r
+
+# Plot final_temp colorized by sensor
+s <- ggplot_temp_val(final_temp, point_size = 1.5)
+s
+
+# Calculate what percent of the time each sensor is outside an "acceptable" range
+results_temperature_vr2ar <- final_temp %>%
+  group_by(sensor_serial_number) %>%
+  summarise('percent_vr2ar_temp_failure' = (sum(flag)) / (count = n())*100)
+print(results_temperature_vr2ar)
 
 
 # FLAGGING DO PERCENT SATURATION DATA ------------------------------------------
@@ -148,9 +210,12 @@ print(percent_time_temp_out_of_range)
 # DOendtime_utc <- as_datetime("2023-11-16 13:40:00", tz = "UTC")
 
 # Filter for just the DO % saturation variable and aquaMeasure DO test time range
-do_data <- filter(VALraw, `dissolved_oxygen_percent_saturation` != "NA") %>%
-      filter(timestamp_utc > trimtime_table$DOstarttime_utc &
-             timestamp_utc < trimtime_table$DOendtime_utc)
+do_data <-
+  filter(raw_val_data, `dissolved_oxygen_percent_saturation` != "NA") %>%
+  filter(
+    timestamp_utc > trimtime_table$do_starttime_utc &
+      timestamp_utc < trimtime_table$do_endtime_utc
+  )
            
 # Create and populate the flag column 
 # DO data should read 100% during DO bucket saturation test, +/- 5% error
@@ -160,7 +225,7 @@ threshold <- 100
 
 final_do <- do_data %>%
   mutate(
-    FLAG = case_when(
+    flag = case_when(
       dissolved_oxygen_percent_saturation > threshold + 5 |
         dissolved_oxygen_percent_saturation < threshold - 5 ~ 1,
       TRUE ~ as.numeric(0)
@@ -176,10 +241,10 @@ p <- ggplot_do_val(final_do, point_size = 0.6)
 p
 
 # Calculate what percent of the time each sensor is outside an "acceptable" range
-percent_time_do_out_of_range <- final_do %>%
+results_do_percent_saturation <- final_do %>%
   group_by(sensor_serial_number) %>%
-  summarise('Percent Bad DO' = (sum(FLAG)) / (count = n()) * 100)
-print(percent_time_do_out_of_range)
+  summarise('percent_do_percent_sat_failure' = (sum(flag)) / (count = n()) * 100)
+print(results_do_percent_saturation)
 
 
 # FLAGGING DO CONCENTRATION DATA------------------------------------------------
@@ -194,8 +259,8 @@ print(percent_time_do_out_of_range)
 hobo_do_data <-
   filter(raw_val_data, `dissolved_oxygen_uncorrected_mg_per_l` != "NA") %>%
   filter(
-    timestamp_utc > trimtime_table$HDOstarttime_utc &
-      timestamp_utc < trimtimetable$HDOendtime_utc
+    timestamp_utc > trimtime_table$hdo_starttime_utc &
+      timestamp_utc < trimtimetable$hdo_endtime_utc
   )
 
 # Create new column rounding timestamps to nearest 10 minutes and calculate 
@@ -211,7 +276,7 @@ hobo_do_medians <- hobo_do_data %>%
 
 final_hobo_do <- merge(hobo_do_data, hdo_medians, by = "rounddate", all.x = TRUE) %>%
   mutate(
-    FLAG = case_when(
+    flag = case_when(
       dissolved_oxygen_uncorrected_mg_per_l > median + 0.20 |
         dissolved_oxygen_uncorrected_mg_per_l < median - 0.20 ~ 1,
       TRUE ~ as.numeric(0)
@@ -227,25 +292,22 @@ w <- ggplot_hobo_do_val(final_hobo_do, point_size = 0.4)
 w
 
 # Calculate what percent of the time each sensor is outside an "acceptable" range
-percent_time_hobo_do_out_of_range <- final_hobo_do %>%
+results_do_concentration <- final_hobo_do %>%
   group_by(sensor_serial_number) %>%
-  summarise('Percent Bad HDO' = (sum(FLAG)) / (count = n())*100)
+  summarise('percent_do_concentration_failure' = (sum(flag)) / (count = n())*100)
 print(percent_time_hobo_do_out_of_range)
 
 
 # FLAGGING SAL DATA -----------------------------------------------------------------------------
-# TODO: Figure out a more eloquent way to select the start/end times
-#         from the trimtime_table. Reduce code. 
-
 # Manually adjust sal start or end time after viewing data if necessary
 # SALstarttime_utc <- as_datetime("2023-11-16 13:40:00", tz = "UTC")
 # SALendtime_utc <- as_datetime("2023-11-16 13:40:00", tz = "UTC")
 
 # Filter for just salinity_psu variable and test time
-sal_data <- filter(VALraw, `salinity_psu` != "NA") %>%
+sal_data <- filter(raw_val_data, `salinity_psu` != "NA") %>%
   filter(
-    timestamp_utc > trimtime_table$SALstarttime_utc &
-      trimtime_table$timestamp_utc < SALendtime_utc
+    timestamp_utc > trimtime_table$sal_starttime_utc &
+      timestamp_utc < trimtime_table$sal_endtime_utc
   )
 
 #Create new column rounding timestamps to nearest 10 minutes and calculate 
@@ -260,7 +322,7 @@ sal_medians <- sal_data %>%
   summarise_at(vars(salinity_psu), list(median = median))
 
 final_sal <- merge(sal_data, sal_medians, by = "rounddate", all.x = TRUE) %>% 
-  mutate(FLAG = case_when(
+  mutate(flag = case_when(
   salinity_psu > median + 1 |
   salinity_psu < median - 1 ~ 1,
   TRUE ~ as.numeric(0)
@@ -275,10 +337,10 @@ u <- ggplot_sal_val(final_sal, point_size = 1)
 u
 
 # Calculate what percent of the time each sensor is outside an "acceptable" range
-percent_time_sal_out_of_range <- final_SAL %>%
+results_sal <- final_sal %>%
   group_by(sensor_serial_number) %>%
-  summarise('Percent Bad SAL' = (sum(FLAG)) / (count = n()) * 100)
-print(percent_time_sal_out_of_range)
+  summarise('percent_sal_failure' = (sum(flag)) / (count = n()) * 100)
+print(results_sal)
 
 
 
