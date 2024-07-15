@@ -12,13 +12,12 @@
 
 # Install the most recent calval package version
 #library(devtools)
-#install_github("ntorrie/calval", force = TRUE, dependencies = TRUE)
+install_github("ntorrie/calval", force = TRUE, dependencies = TRUE)
 library(miceadds) #or source all functions
 source.all("C:/Users/Nicole Torrie/Documents/R/packages/calval/R")
 
 # Load libraries
 library(calval)
-#library(tidyverse)
 library(dplyr)
 library(sensorstrings)
 library(lubridate)
