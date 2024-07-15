@@ -47,7 +47,7 @@ completion of the validation tests, data from each sensor is offloaded
 and evaluated using the calval package functions.
 
 <img src="man/figures/do_bucket_test.jpg" width="75%" height="75%" style="display: block; margin: auto;" />
-Figure 1. Dissolved oxygen percent saturation test
+Figure 1. Dissolved oxygen percent saturation test <br>
 
 The precision for these dissolved oxygen sensors is +/-5 % (InnovaSea
 2021). Since the the sensors in the test environment are in
@@ -62,7 +62,7 @@ that pass the tests are cleared for deployment.
 Figure 2. Visualizing results of a dissolved oxygen percent saturation
 test for four sensors. Sensor 675016 recorded outside of an acceptable
 range for 99.9% of the test period, and was therefore flagged for
-re-calibration.
+re-calibration and further testing.
 
 ### Other Variables
 

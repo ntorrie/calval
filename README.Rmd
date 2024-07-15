@@ -53,7 +53,7 @@ For a validation test of dissolved oxygen measured in units of percent saturatio
 knitr::include_graphics("man/figures/do_bucket_test.jpg")
 ```
 Figure 1. Dissolved oxygen percent saturation test
-
+<br>
 
 The precision for these dissolved oxygen sensors is +/-5 % (InnovaSea 2021). Since the the sensors in the test environment are in water-saturated air, they should measure 100 +/-5 % saturation. Any sensors which record observations outside of the acceptable 95 - 105 % range for > 10 % of the test require re-calibration and be re-validated. If a sensor fails more than 2 consecutive validation tests it will be sent back to the manufacturer for troubleshooting. Sensors that pass the tests are cleared for deployment. 
 
@@ -61,7 +61,7 @@ The precision for these dissolved oxygen sensors is +/-5 % (InnovaSea 2021). Sin
 ```{r, echo=FALSE, out.height='120%', out.width='100%', fig.align='center', dpi=600}
 knitr::include_graphics("man/figures/do_bucket_test_results.png")
 ```
-Figure 2. Visualizing results of a dissolved oxygen percent saturation test for four sensors. Sensor 675016 recorded outside of an acceptable range for 99.9% of the test period, and was therefore flagged for re-calibration.
+Figure 2. Visualizing results of a dissolved oxygen percent saturation test for four sensors. Sensor 675016 recorded outside of an acceptable range for 99.9% of the test period, and was therefore flagged for re-calibration and further testing.
 
 ### Other Variables
 For validation tests of temperature and dissolved oxygen measured in mg/L, sensors are set to record at 10 - 15 minute intervals and submerged in a well insulated, circulating tank of fresh water for a minimum of 12 hours. The same procedure is used for the salinity validation tests, except seawater is used instead of fresh water. A minimum of 4 sensors are required in the test tank to ensure a valid test for the temperature, dissolved oxygen mg/L, and salinity tests. 
