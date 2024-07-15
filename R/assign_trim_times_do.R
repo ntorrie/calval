@@ -2,7 +2,7 @@
 #'
 #' @param log Metadata log with deployment_datetime column
 #'
-#' @return Returns DOstarttime_utc
+#' @return Returns do_starttime_utc
 #' 
 #' @author Nicole Torrie
 #' 
@@ -14,14 +14,11 @@
 
 
 #Dissolved Oxygen
-#Convert the test start/end times to UTC 
-#Add 3 hrs to convert from ADT (dst true). Daylight savings (ADT) runs roughly from March 12- November 5.
-#Add 4 hrs to convert from AST (dst false)
-
+#Convert the test start time to UTC 
 assign_trim_start_do <- function(log){
   dolog <- filter(log, validation_variable == "DO", Logger_Model == "aquaMeasure DOT") %>%
     filter(row_number() == 1)
-  DOstarttime_utc <- as_datetime(dolog$deployment_datetime, tz = "UTC")
+  do_starttime_utc <- as_datetime(dolog$deployment_datetime, tz = "UTC")
 }
 
 
@@ -39,9 +36,10 @@ assign_trim_start_do <- function(log){
 #' @export
 #'
 
-
+#Dissolved Oxygen
+#Convert the test end time to UTC 
 assign_trim_end_do <- function(log){
   dolog <- filter(log, validation_variable == "DO", Logger_Model == "aquaMeasure DOT") %>%
     filter(row_number() == 1)
-  DOendtime_utc <- as_datetime(dolog$retrieval_datetime, tz = "UTC")
+  do_endtime_utc <- as_datetime(dolog$retrieval_datetime, tz = "UTC")
 }
