@@ -20,7 +20,7 @@ recording within an appropriate range. Testing occurs again after
 sensors are retrieved from deployment to check for sensor drift and
 biofouling impacts.
 
-## Installation
+# Installation
 
 You can install the development version of calval from
 [GitHub](https://github.com/) with:
@@ -30,14 +30,14 @@ You can install the development version of calval from
 devtools::install_github("ntorrie/calval")
 ```
 
-## Pre-Deployment Validation Tests
+# Pre-Deployment Validation Tests
 
 Prior to deployment, sensors that can be calibrated are calibrated
 according to their specific sensor manual. All sensors are then
 subjected to a Validation Test(s), which differ depending on the
 variables measured.
 
-# Dissolved Oxygen (percent saturation)
+## Dissolved Oxygen (percent saturation)
 
 For a Validation Test of dissolved oxygen measured in units of percent
 saturation, sensors are set to record at 10 minute intervals and placed
@@ -55,7 +55,7 @@ four sensors. Sensor \#675016 recorded outside of an acceptable range
 for 99.9% of the test period, and was therefore flagged for
 re-calibration.
 
-# Other Variables
+## Other Variables
 
 For Validation Tests of temperature and dissolved oxygen measured in
 mg/L, sensors are set to record at 10 - 15 minute intervals and
@@ -63,7 +63,7 @@ submerged in a well insulated, circulating tank of fresh water for a
 minimum of 12 hours. The same procedure is used for the salinity
 Validation Tests, except seawater is used instead of fresh water.
 
-# Results
+## Results
 
 Upon completion of the Validation Tests, data from each sensor is
 offloaded and evaluated using the calval package functions to ensure all
@@ -74,7 +74,7 @@ the test will be re-calibrated (if applicable) and re-validated. If a
 sensor fails more than 2 consecutive validation tests it will be sent
 back to the manufacturer for troubleshooting.
 
-## Post-Deployment Validation
+# Post-Deployment Validation
 
 After sensors are retrieved from deployment, they undergo
 post-deployment validation testing following the same procedures as the
