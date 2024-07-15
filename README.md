@@ -20,7 +20,7 @@ recording within an appropriate range. Testing is repeated after sensors
 are retrieved from deployment to check for sensor drift and biofouling
 impacts.
 
-# Installation
+## Installation
 
 You can install the development version of calval from
 [GitHub](https://github.com/) with:
@@ -37,7 +37,7 @@ according to their specific sensor manual. Each sensor is then subjected
 to a validation test(s), which differ depending on the variables
 measured.
 
-### Dissolved Oxygen (percent saturation)
+### Dissolved Oxygen (Percent Saturation)
 
 For a validation test of dissolved oxygen measured in units of percent
 saturation, sensors are set to record at 10 minute intervals and placed
@@ -46,7 +46,7 @@ The sensors are left to record for a minimum of 6 hours (Figure 1). Upon
 completion of the validation tests, data from each sensor is offloaded
 and evaluated using the calval package functions.
 
-<img src="man/figures/do_bucket_test.jpg" width="100%" height="120%" style="display: block; margin: auto;" />
+<img src="man/figures/do_bucket_test.jpg" width="75%" height="75%" style="display: block; margin: auto;" />
 Figure 1. Dissolved oxygen percent saturation test
 
 The precision for these dissolved oxygen sensors is +/-5 % (InnovaSea
@@ -59,9 +59,10 @@ it will be sent back to the manufacturer for troubleshooting. Sensors
 that pass the tests are cleared for deployment.
 
 <img src="man/figures/do_bucket_test_results.png" width="100%" height="120%" style="display: block; margin: auto;" />
-Figure 2. Results of a dissolved oxygen percent saturation test for four
-sensors. Sensor \#675016 recorded outside of an acceptable range for
-99.9% of the test period, and was therefore flagged for re-calibration.
+Figure 2. Visualizing results of a dissolved oxygen percent saturation
+test for four sensors. Sensor 675016 recorded outside of an acceptable
+range for 99.9% of the test period, and was therefore flagged for
+re-calibration.
 
 ### Other Variables
 
