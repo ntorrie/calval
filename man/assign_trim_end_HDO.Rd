@@ -4,13 +4,13 @@
 \alias{assign_trim_end_hdo}
 \title{Create variable for HOBO DO test end time in UTC}
 \usage{
-assign_trim_end_hdo(Log)
+assign_trim_end_hdo(log)
 }
 \arguments{
 \item{Log}{Metadata log with deployment_datetime column}
 }
 \value{
-Returns HDOendtime_utc
+Returns hdo_endtime_utc
 }
 \description{
 Create variable for HOBO DO test end time in UTC

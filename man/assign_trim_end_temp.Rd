@@ -4,13 +4,13 @@
 \alias{assign_trim_end_temp}
 \title{Create variable for TEMP test end time in UTC}
 \usage{
-assign_trim_end_temp(Log)
+assign_trim_end_temp(log)
 }
 \arguments{
-\item{Log}{Metadata log with deployment_datetime column}
+\item{log}{Metadata log with deployment_datetime column}
 }
 \value{
-Returns TEMPendtime_utc
+Returns temp_endtime_utc
 }
 \description{
 Create variable for TEMP test end time in UTC

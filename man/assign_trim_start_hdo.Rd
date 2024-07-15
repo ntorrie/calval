@@ -4,13 +4,13 @@
 \alias{assign_trim_start_hdo}
 \title{Create variable for Hobo DO test start time in UTC}
 \usage{
-assign_trim_start_hdo(Log)
+assign_trim_start_hdo(log)
 }
 \arguments{
-\item{Log}{Metadata log with deployment_datetime column}
+\item{log}{Metadata log with deployment_datetime column}
 }
 \value{
-Returns HDOstarttime_utc
+Returns hdo_starttime_utc
 }
 \description{
 Create variable for Hobo DO test start time in UTC

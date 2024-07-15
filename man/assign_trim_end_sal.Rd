@@ -4,13 +4,13 @@
 \alias{assign_trim_end_sal}
 \title{Create variable for SAL test end time in UTC}
 \usage{
-assign_trim_end_sal(Log)
+assign_trim_end_sal(log)
 }
 \arguments{
-\item{Log}{Metadata log with deployment_datetime column}
+\item{log}{Metadata log with deployment_datetime column}
 }
 \value{
-Returns SALendtime_utc
+Returns sal_endtime_utc
 }
 \description{
 Create variable for SAL test end time in UTC
