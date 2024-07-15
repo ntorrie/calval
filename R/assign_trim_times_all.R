@@ -1,9 +1,6 @@
 #' Create table of test start and end times for each variable
 #'
-#' @param Temp TRUE if Temperature data is present in the dataset
-#' @param HDO TRUE if Hobo DO mg/l Dissolved Oxygen data is present in the dataset
-#' @param DO TRUE if Dissolved Oxygen percent saturation data is present in the dataset
-#' @param SAL TRUE if Salinity data is present in the dataset
+#' @param var_list list of variables present in the dataset
 #'
 #' @return a data frame of all test start and end times in utc
 #' 
@@ -16,20 +13,17 @@
 #' 
 
 #to assign trim times for all variables at once
-assign_trim_times_all <- function(Temp = TRUE,
-                                  DO = TRUE,
-                                  HDO = FALSE,
-                                  SAL = FALSE){
+assign_trim_times_all <- function(var_list){
   
-  if(Temp == TRUE){
+  if("Temp" %in% var_list){
     TEMPstarttime_utc <- assign_trim_start_temp(Log)
     TEMPendtime_utc <- assign_trim_end_temp(Log)
-  } else{
+  } else {
     TEMPstarttime_utc <- NA
     TEMPendtime_utc <- NA
   }
   
-  if(HDO == TRUE){
+  if("HDO" %in% var_list){
     HDOstarttime_utc <- assign_trim_start_hdo(Log)
     HDOendtime_utc <- assign_trim_end_hdo(Log)
   } else{
@@ -37,7 +31,7 @@ assign_trim_times_all <- function(Temp = TRUE,
     HDOendtime_utc <- NA
   }
   
-  if(DO == TRUE){
+  if("DO" %in% var_list){
     DOstarttime_utc <- assign_trim_start_do(Log)
     DOendtime_utc <- assign_trim_end_do(Log)
   } else{
@@ -45,7 +39,7 @@ assign_trim_times_all <- function(Temp = TRUE,
     DOendtime_utc <- NA
   }
   
-  if(SAL == TRUE){
+  if("SAL" %in% var_list){
     SALstarttime_utc <- assign_trim_start_sal(Log)
     SALendtime_utc <- assign_trim_end_sal(Log)
   } else{
