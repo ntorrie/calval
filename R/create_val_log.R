@@ -1,6 +1,6 @@
 #' Create metadata log from Tracking Google sheet
 #'
-#' @param Tracking Dataframe created from downloaded CalVal Tracking Google sheet
+#' @param tracking Dataframe created from downloaded CalVal Tracking Google sheet
 #'
 #' @return Returns metadata log with updated column names and new columns with deployment and retrieval datetime in Atlantic timezone
 #' 
@@ -15,8 +15,8 @@
 
 
 
-create_val_log <- function(Tracking){
-  Tracking %>%
+create_val_log <- function(tracking){
+  tracking %>%
     mutate(Logger_Latitude = 44.66) %>%
     mutate(Logger_Longitude = -63.56) %>%
     mutate(Sensor_Depth = 1) %>%
@@ -25,7 +25,7 @@ create_val_log <- function(Tracking){
     mutate(configuration = "attached to fixed structure") %>%
     mutate(Location_Description = "validation") %>%
     rename(
-      "ID" = `validation event id`,
+      "id" = `validation event id`,
       "Deployment" = `validation start date`,
       "validation_start_time" = `validation start time (AST)`,
       "Retrieval" = `validation end date`,
