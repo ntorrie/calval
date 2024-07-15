@@ -4,10 +4,10 @@
 \alias{ggplot_do_val}
 \title{Plot DO validation data, colorize points by sensor serial #}
 \usage{
-ggplot_do_val(DO, point_size = 0.75)
+ggplot_do_val(final_do, point_size = 0.75)
 }
 \arguments{
-\item{DO}{Dataframe filtered for dissolved oxygen percent saturation test data}
+\item{final_do}{Dataframe filtered for dissolved oxygen percent saturation test data}
 
 \item{point_size}{to set size of ggplot points}
 }
