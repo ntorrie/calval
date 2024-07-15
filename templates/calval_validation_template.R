@@ -36,7 +36,7 @@ path <-
 
 ## CONSTRUCT METADATA LOG AND DEFINE VARIABLES----------------------------------
 # Allow access to the Calibration/Validation Tracking Google sheet
-#googlesheets4::gs4_deauth()
+googlesheets4::gs4_deauth()
 sheet = ifelse(str_detect(VALID, "^POST"),
                "Post Deployment Validation",
                "Pre Deployment CalVal")
