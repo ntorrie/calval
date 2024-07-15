@@ -4,10 +4,10 @@
 \alias{ggplot_sal_flag}
 \title{Plot SAL validation data, colorize points by SAL flag}
 \usage{
-ggplot_sal_flag(final_SAL, point_size = 0.75)
+ggplot_sal_flag(final_sal, point_size = 0.75)
 }
 \arguments{
-\item{final_SAL}{Dataframe filtered for salinity test data}
+\item{final_sal}{Dataframe filtered for salinity test data}
 
 \item{point_size}{to set size of ggplot points}
 }
