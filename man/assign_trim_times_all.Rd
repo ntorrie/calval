@@ -4,16 +4,12 @@
 \alias{assign_trim_times_all}
 \title{Create table of test start and end times for each variable}
 \usage{
-assign_trim_times_all(Temp = TRUE, DO = TRUE, HDO = FALSE, SAL = FALSE)
+assign_trim_times_all(var_list, log)
 }
 \arguments{
-\item{Temp}{TRUE if Temperature data is present in the dataset}
+\item{var_list}{list of variables present in the dataset}
 
-\item{DO}{TRUE if Dissolved Oxygen percent saturation data is present in the dataset}
-
-\item{HDO}{TRUE if Hobo DO mg/l Dissolved Oxygen data is present in the dataset}
-
-\item{SAL}{TRUE if Salinity data is present in the dataset}
+\item{log}{Metadata log with deployment_datetime and retrieval_datetime columns}
 }
 \value{
 a data frame of all test start and end times in utc
