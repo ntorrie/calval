@@ -26,7 +26,7 @@ assign_trim_start_do <- function(log){
 #'
 #' @param log Metadata log with deployment_datetime column
 #'
-#' @return Returns DOendtime_utc
+#' @return Returns do_endtime_utc
 #' 
 #' @author Nicole Torrie
 #' 
