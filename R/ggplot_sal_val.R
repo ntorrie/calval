@@ -1,6 +1,6 @@
 #' Plot SAL validation data, colorize points by sensor serial #
 #'
-#' @param final_SAL Dataframe filtered for salinity test data
+#' @param final_sal Dataframe filtered for salinity test data
 #' @param point_size to set size of ggplot points
 #'
 #' @return Returns a ggplot object of Salinity validation data colorized based on sensor serial #
@@ -13,10 +13,10 @@
 #'
 
 
-ggplot_sal_val <- function(final_SAL,
+ggplot_sal_val <- function(final_sal,
                            point_size = 0.75) {
   u <-
-    ggplot(final_SAL,
+    ggplot(final_sal,
            aes(
              x = timestamp_utc,
              y = salinity_psu,

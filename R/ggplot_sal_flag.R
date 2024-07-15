@@ -1,6 +1,6 @@
 #' Plot SAL validation data, colorize points by SAL flag
 #'
-#' @param final_SAL Dataframe filtered for salinity test data
+#' @param final_sal Dataframe filtered for salinity test data
 #' @param point_size to set size of ggplot points
 #'
 #' @return Returns a ggplot object of Salinity validation data colorized based on SAL flag
@@ -14,14 +14,14 @@
 
 
 
-ggplot_sal_flag <- function(final_SAL,
+ggplot_sal_flag <- function(final_sal,
                             point_size = 0.75) {
   t <-
-    ggplot(final_SAL,
+    ggplot(final_sal,
            aes(
              x = timestamp_utc,
              y = salinity_psu,
-             color = as.factor(FLAG)
+             color = as.factor(flag)
            )) +
     geom_point(size = point_size) +
     scale_color_manual(values = c('Green', 'Red')) +
@@ -30,7 +30,7 @@ ggplot_sal_flag <- function(final_SAL,
                 alpha = 0.3,
                 color = NA)
   
-  t <- t  + labs(color = 'FLAG')
+  t <- t  + labs(color = 'flag')
   t
 }
 
