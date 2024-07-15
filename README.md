@@ -16,9 +16,9 @@ The calval package contains a collection of functions to assist with the
 flagging and visualization of validation data collected during quality
 assurance testing of CMAR Coastal Monitoring Program sensors. Sensor
 testing occurs prior to sensor deployment to ensure sensors are
-recording within an appropriate range. Testing occurs again after
-sensors are retrieved from deployment to check for sensor drift and
-biofouling impacts.
+recording within an appropriate range. Testing is repeated after sensors
+are retrieved from deployment to check for sensor drift and biofouling
+impacts.
 
 # Installation
 
@@ -33,46 +33,53 @@ devtools::install_github("ntorrie/calval")
 # Pre-Deployment Validation Tests
 
 Prior to deployment, sensors that can be calibrated are calibrated
-according to their specific sensor manual. All sensors are then
-subjected to a Validation Test(s), which differ depending on the
-variables measured.
+according to their specific sensor manual. Each sensor is then subjected
+to a validation test(s), which differ depending on the variables
+measured.
 
 ## Dissolved Oxygen (percent saturation)
 
-For a Validation Test of dissolved oxygen measured in units of percent
+For a validation test of dissolved oxygen measured in units of percent
 saturation, sensors are set to record at 10 minute intervals and placed
 in an air-tight environment with water-saturated air at 100 % humidity.
-The sensors are left to record for a minimum of 6 hours (Figure 2)
+The sensors are left to record for a minimum of 6 hours (Figure 2). Upon
+completion of the validation tests, data from each sensor is offloaded
+and evaluated using the calval package functions.
 
 The precision for these dissolved oxygen sensors is +/-5 % (InnovaSea
-2021). Since the the sensors in the bucket are in water-saturated air,
-they should measure 100 +/-5 % saturation. Any sensors outside of the
-acceptable 95 - 105 % range for more than 10 % of the test require
-re-calibration.
+2021). Since the the sensors in the test environment are in
+water-saturated air, they should measure 100 +/-5 % saturation. Any
+sensors which record observations outside of the acceptable 95 - 105 %
+range for \> 10 % of the test require re-calibration and be
+re-validated. If a sensor fails more than 2 consecutive validation tests
+it will be sent back to the manufacturer for troubleshooting. Sensors
+that pass the tests are cleared for deployment.
 
-Figure 3 shows the results of a dissolved oxygen Validation Test for
+Figure 1 shows the results of a dissolved oxygen validation test for
 four sensors. Sensor \#675016 recorded outside of an acceptable range
 for 99.9% of the test period, and was therefore flagged for
 re-calibration.
 
 ## Other Variables
 
-For Validation Tests of temperature and dissolved oxygen measured in
+For validation tests of temperature and dissolved oxygen measured in
 mg/L, sensors are set to record at 10 - 15 minute intervals and
 submerged in a well insulated, circulating tank of fresh water for a
 minimum of 12 hours. The same procedure is used for the salinity
-Validation Tests, except seawater is used instead of fresh water.
+validation tests, except seawater is used instead of fresh water. A
+minimum of 4 sensors are required in the test tank to ensure a valid
+test for the temperature, dissolved oxygen mg/L, and salinity tests.
 
-## Results
-
-Upon completion of the Validation Tests, data from each sensor is
-offloaded and evaluated using the calval package functions to ensure all
-sensors are recording within an appropriate manufacturer-specified range
-of each other. Sensors that pass the tests are cleared for deployment.
-Any sensor that records outside of the acceptable range for \> 10 % of
-the test will be re-calibrated (if applicable) and re-validated. If a
-sensor fails more than 2 consecutive validation tests it will be sent
-back to the manufacturer for troubleshooting.
+Upon completion of the validation tests, data from each sensor is
+offloaded and evaluated using the calval package functions. For each
+variable, an acceptable sensor observation should fall within the range
+of median observation +/- the sensor-specific precision range. The
+precision for each sensor type varies slightly. Sensors that pass the
+tests are cleared for deployment. Any sensor that records outside of the
+acceptable range for \> 10 % of the test will be re-calibrated (if
+applicable) and re-validated. If a sensor fails more than 2 consecutive
+validation tests it will be sent back to the manufacturer for
+troubleshooting.
 
 # Post-Deployment Validation
 
