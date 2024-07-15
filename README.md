@@ -30,21 +30,24 @@ You can install the development version of calval from
 devtools::install_github("ntorrie/calval")
 ```
 
-# Pre-Deployment Validation Tests
+## Pre-Deployment Validation Tests
 
 Prior to deployment, sensors that can be calibrated are calibrated
 according to their specific sensor manual. Each sensor is then subjected
 to a validation test(s), which differ depending on the variables
 measured.
 
-## Dissolved Oxygen (percent saturation)
+### Dissolved Oxygen (percent saturation)
 
 For a validation test of dissolved oxygen measured in units of percent
 saturation, sensors are set to record at 10 minute intervals and placed
 in an air-tight environment with water-saturated air at 100 % humidity.
-The sensors are left to record for a minimum of 6 hours (Figure 2). Upon
+The sensors are left to record for a minimum of 6 hours (Figure 1). Upon
 completion of the validation tests, data from each sensor is offloaded
 and evaluated using the calval package functions.
+
+<img src="man/figures/do_bucket_test.jpg" width="100%" height="120%" style="display: block; margin: auto;" />
+Figure 1. Dissolved oxygen percent saturation test
 
 The precision for these dissolved oxygen sensors is +/-5 % (InnovaSea
 2021). Since the the sensors in the test environment are in
@@ -55,12 +58,12 @@ re-validated. If a sensor fails more than 2 consecutive validation tests
 it will be sent back to the manufacturer for troubleshooting. Sensors
 that pass the tests are cleared for deployment.
 
-Figure 1 shows the results of a dissolved oxygen validation test for
-four sensors. Sensor \#675016 recorded outside of an acceptable range
-for 99.9% of the test period, and was therefore flagged for
-re-calibration.
+<img src="man/figures/do_bucket_test_results.png" width="100%" height="120%" style="display: block; margin: auto;" />
+Figure 2. Results of a dissolved oxygen percent saturation test for four
+sensors. Sensor \#675016 recorded outside of an acceptable range for
+99.9% of the test period, and was therefore flagged for re-calibration.
 
-## Other Variables
+### Other Variables
 
 For validation tests of temperature and dissolved oxygen measured in
 mg/L, sensors are set to record at 10 - 15 minute intervals and
@@ -81,7 +84,7 @@ applicable) and re-validated. If a sensor fails more than 2 consecutive
 validation tests it will be sent back to the manufacturer for
 troubleshooting.
 
-# Post-Deployment Validation
+## Post-Deployment Validation Tests
 
 After sensors are retrieved from deployment, they undergo
 post-deployment validation testing following the same procedures as the
