@@ -48,8 +48,6 @@ tracking <- googlesheets4::read_sheet(link, sheet = sheet, col_types = "c") %>%
 
 log <- create_val_log(tracking) 
 
-# Create table of test start/end times for each variable
-# TODO: can this part be automated based on the "validation variable" tracking sheet col?
 # Get a list of variables measured in this validation event
 val_var_list <-
   tracking %>%
@@ -60,12 +58,14 @@ val_var_list <-
   # Get only validation variables
   distinct(`validation variable`) %>%
   pull(`validation variable`)
-  
-source("R/assign_trim_times_all.R") # had to source directly to test
+
+# Create table of test start/end times for each variable
 trimtime_table <- assign_trim_times_all(var_list = val_var_list,
                                         log = log)
 # Could probably put this line into assign_trim_times_all()
-trimtime_table <- pivot_wider(trimtime_table, names_from = TimeVariable, values_from = DateTime)
+trimtime_table <- pivot_wider(trimtime_table,
+                              names_from = TimeVariable,
+                              values_from = DateTime)
 
 # Apply final Log edits for data processing
 # TODO: should this be part of the create_val_log function?
