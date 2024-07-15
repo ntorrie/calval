@@ -1,8 +1,8 @@
 #' Create variable for Hobo DO test start time in UTC 
 #'
-#' @param Log Metadata log with deployment_datetime column
+#' @param log Metadata log with deployment_datetime column
 #'
-#' @return Returns HDOstarttime_utc
+#' @return Returns hdo_starttime_utc
 #' 
 #' @author Nicole Torrie
 #' 
@@ -14,14 +14,11 @@
 
 
 #Hobo DO
-#Convert the test start/end times to UTC 
-#Add 3 hrs to convert from ADT (dst true). Daylight savings (ADT) runs roughly from March 12- November 5.
-#Add 4 hrs to convert from AST (dst false). Roughly Nov 6-March 11.
-
-assign_trim_start_hdo <- function(Log){
-  HDOLog <- filter(Log, validation_variable == "DO", Logger_Model == "HOBO DO") %>%
+#Convert the test start time to UTC 
+assign_trim_start_hdo <- function(log){
+  hdo_log <- filter(log, validation_variable == "DO", Logger_Model == "HOBO DO") %>%
     filter(row_number()==1)
-  HDOstarttime_utc <- as_datetime(HDOLog$deployment_datetime, tz = "UTC")
+  hdo_starttime_utc <- as_datetime(hdo_log$deployment_datetime, tz = "UTC")
 }
 
 
@@ -29,7 +26,7 @@ assign_trim_start_hdo <- function(Log){
 #'
 #' @param Log Metadata log with deployment_datetime column
 #'
-#' @return Returns HDOendtime_utc
+#' @return Returns hdo_endtime_utc
 #' 
 #' @author Nicole Torrie
 #' 
@@ -40,9 +37,11 @@ assign_trim_start_hdo <- function(Log){
 #'
 
 
-assign_trim_end_hdo <- function(Log){
-  HDOLog <- filter(Log, validation_variable == "DO", Logger_Model == "HOBO DO") %>%
+#Hobo DO
+#Convert the test end time to UTC 
+assign_trim_end_hdo <- function(log){
+  hdo_log <- filter(log, validation_variable == "DO", Logger_Model == "HOBO DO") %>%
     filter(row_number()==1)
-  HDOendtime_utc <- as_datetime(HDOLog$retrieval_datetime, tz = "UTC")
+  hdo_endtime_utc <- as_datetime(hdo_log$retrieval_datetime, tz = "UTC")
 }
 
