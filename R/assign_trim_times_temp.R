@@ -1,8 +1,8 @@
 #' Create variable for TEMP test start time in UTC 
 #'
-#' @param Log Metadata log with deployment_datetime column
+#' @param log Metadata log with deployment_datetime column
 #'
-#' @return Returns TEMPstarttime_utc
+#' @return Returns temp_starttime_utc
 #' 
 #' @author Nicole Torrie
 #' 
@@ -14,22 +14,19 @@
 
 
 #Temperature
-#Convert the test start/end times to UTC 
-#Add 3 hrs to convert from ADT (dst true). Daylight savings (ADT) runs roughly from March 12- November 5.
-#Add 4 hrs to convert from AST (dst false). Roughly Nov 6-March 11.
-
-assign_trim_start_temp <- function(Log){
-  TEMPLog <- filter(Log, validation_variable == "Temp") %>%
+#Convert the test start time to UTC 
+assign_trim_start_temp <- function(log){
+  temp_log <- filter(log, validation_variable == "Temp") %>%
     filter(row_number()==1)
-  TEMPstarttime_utc <- as_datetime(TEMPLog$deployment_datetime, tz = "UTC")
+  temp_starttime_utc <- as_datetime(temp_log$deployment_datetime, tz = "UTC")
 }
 
 
 #' Create variable for TEMP test end time in UTC
 #'
-#' @param Log Metadata log with deployment_datetime column
+#' @param log Metadata log with deployment_datetime column
 #'
-#' @return Returns TEMPendtime_utc
+#' @return Returns temp_endtime_utc
 #' 
 #' @author Nicole Torrie
 #' 
@@ -39,10 +36,11 @@ assign_trim_start_temp <- function(Log){
 #' @export
 #'
 
-
-assign_trim_end_temp <- function(Log){
-  TEMPLog <- filter(Log, validation_variable == "Temp") %>%
+#Temperature
+#Convert the test end time to UTC 
+assign_trim_end_temp <- function(log){
+  temp_log <- filter(log, validation_variable == "Temp") %>%
     filter(row_number()==1)
-  TEMPendtime_utc <- as_datetime(TEMPLog$retrieval_datetime, tz = "UTC")
+  temp_endtime_utc <- as_datetime(temp_log$retrieval_datetime, tz = "UTC")
 }
 
