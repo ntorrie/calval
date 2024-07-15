@@ -7,7 +7,7 @@
 assign_trim_end_hdo(log)
 }
 \arguments{
-\item{Log}{Metadata log with deployment_datetime column}
+\item{log}{Metadata log with deployment_datetime column}
 }
 \value{
 Returns hdo_endtime_utc
