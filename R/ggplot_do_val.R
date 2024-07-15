@@ -1,6 +1,6 @@
 #' Plot DO validation data, colorize points by sensor serial #
 #'
-#' @param DO Dataframe filtered for dissolved oxygen percent saturation test data
+#' @param final_do Dataframe filtered for dissolved oxygen percent saturation test data
 #' @param point_size to set size of ggplot points
 #'
 #' @return Returns a ggplot object of Dissolved Oxygen validation data colorized based on sensor serial #
@@ -13,11 +13,11 @@
 #'
 
 
-ggplot_do_val <- function(DO,
+ggplot_do_val <- function(final_do,
                           point_size = 0.75) {
   p <-
     ggplot(
-      DO,
+      final_do,
       aes(
         x = timestamp_utc,
         y = dissolved_oxygen_percent_saturation,
