@@ -4,10 +4,10 @@
 \alias{ggplot_hdo_flag}
 \title{Plot HOBO DO validation data, colorize points by HOBO DO flag}
 \usage{
-ggplot_hdo_flag(final_HDO, point_size = 0.75)
+ggplot_hdo_flag(final_hobo_do, point_size = 0.75)
 }
 \arguments{
-\item{final_HDO}{Dataframe filtered for HDO test data}
+\item{final_hobo_do}{Dataframe filtered for HDO test data}
 
 \item{point_size}{to set size of ggplot points}
 }
