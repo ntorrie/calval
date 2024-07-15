@@ -1,8 +1,8 @@
 #' Create variable for SAL test start time in UTC 
 #'
-#' @param Log Metadata log with deployment_datetime column
+#' @param log Metadata log with deployment_datetime column
 #'
-#' @return Returns SALstarttime_utc
+#' @return Returns sal_starttime_utc
 #' 
 #' @author Nicole Torrie
 #' 
@@ -12,24 +12,20 @@
 #' @export
 #'
 
-
 #Salinity
-#Convert the test start/end times to UTC 
-#Add 3 hrs to convert from ADT (dst true). Daylight savings (ADT) runs roughly from March 12- November 5.
-#Add 4 hrs to convert from AST (dst false)
-
-assign_trim_start_sal <- function(Log){
-  SALLog <- filter(Log, validation_variable == "SAL") %>%
+#Convert the test start time to UTC 
+assign_trim_start_sal <- function(log){
+  sal_log <- filter(log, validation_variable == "SAL") %>%
     filter(row_number()==1)
-  SALstarttime_utc <- as_datetime(SALLog$deployment_datetime, tz = "UTC")
+  sal_starttime_utc <- as_datetime(sal_log$deployment_datetime, tz = "UTC")
 }
 
 
 #' Create variable for SAL test end time in UTC 
 #'
-#' @param Log Metadata log with deployment_datetime column
+#' @param log Metadata log with deployment_datetime column
 #'
-#' @return Returns SALendtime_utc
+#' @return Returns sal_endtime_utc
 #' 
 #' @author Nicole Torrie
 #' 
@@ -39,9 +35,11 @@ assign_trim_start_sal <- function(Log){
 #' @export
 #'
 
-assign_trim_end_sal <- function(Log){
-  SALLog <- filter(Log, validation_variable == "SAL") %>%
+#Salinity
+#Convert the test end time to UTC 
+assign_trim_end_sal <- function(log){
+  sal_log <- filter(log, validation_variable == "SAL") %>%
     filter(row_number()==1)
-  SALendtime_utc <- as_datetime(SALLog$retrieval_datetime, tz = "UTC")
+  sal_endtime_utc <- as_datetime(sal_log$retrieval_datetime, tz = "UTC")
 }
 
