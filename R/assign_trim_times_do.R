@@ -16,9 +16,9 @@
 #Dissolved Oxygen
 #Convert the test start time to UTC 
 assign_trim_start_do <- function(log){
-  dolog <- filter(log, validation_variable == "DO", Logger_Model == "aquaMeasure DOT") %>%
+  do_log <- filter(log, validation_variable == "DO", Logger_Model == "aquaMeasure DOT") %>%
     filter(row_number() == 1)
-  do_starttime_utc <- as_datetime(dolog$deployment_datetime, tz = "UTC")
+  do_starttime_utc <- as_datetime(do_log$deployment_datetime, tz = "UTC")
 }
 
 
@@ -39,7 +39,7 @@ assign_trim_start_do <- function(log){
 #Dissolved Oxygen
 #Convert the test end time to UTC 
 assign_trim_end_do <- function(log){
-  dolog <- filter(log, validation_variable == "DO", Logger_Model == "aquaMeasure DOT") %>%
+  do_log <- filter(log, validation_variable == "DO", Logger_Model == "aquaMeasure DOT") %>%
     filter(row_number() == 1)
-  do_endtime_utc <- as_datetime(dolog$retrieval_datetime, tz = "UTC")
+  do_endtime_utc <- as_datetime(do_log$retrieval_datetime, tz = "UTC")
 }
