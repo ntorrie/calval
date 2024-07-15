@@ -18,58 +18,58 @@
 assign_trim_times_all <- function(var_list, log){
   
   if("Temp" %in% var_list){
-    TEMPstarttime_utc <- assign_trim_start_temp(log)
-    TEMPendtime_utc <- assign_trim_end_temp(log)
+    temp_starttime_utc <- assign_trim_start_temp(log)
+    temp_endtime_utc <- assign_trim_end_temp(log)
   } else {
-    TEMPstarttime_utc <- NA
-    TEMPendtime_utc <- NA
+    temp_starttime_utc <- NA
+    temp_endtime_utc <- NA
   }
   
   if("HDO" %in% var_list){
-    HDOstarttime_utc <- assign_trim_start_hdo(log)
-    HDOendtime_utc <- assign_trim_end_hdo(log)
+    hdo_starttime_utc <- assign_trim_start_hdo(log)
+    hdo_endtime_utc <- assign_trim_end_hdo(log)
   } else{
-    HDOstarttime_utc <- NA
-    HDOendtime_utc <- NA
+    hdo_starttime_utc <- NA
+    hdo_endtime_utc <- NA
   }
   
   if("DO" %in% var_list){
-    DOstarttime_utc <- assign_trim_start_do(log)
-    DOendtime_utc <- assign_trim_end_do(log)
+    do_starttime_utc <- assign_trim_start_do(log)
+    do_endtime_utc <- assign_trim_end_do(log)
   } else{
-    DOstarttime_utc <- NA
-    DOendtime_utc <- NA
+    do_starttime_utc <- NA
+    do_endtime_utc <- NA
   }
   
   if("SAL" %in% var_list){
-    SALstarttime_utc <- assign_trim_start_sal(log)
-    SALendtime_utc <- assign_trim_end_sal(log)
+    sal_starttime_utc <- assign_trim_start_sal(log)
+    sal_endtime_utc <- assign_trim_end_sal(log)
   } else{
-    SALstarttime_utc <- NA
-    SALendtime_utc <- NA
+    sal_starttime_utc <- NA
+    sal_endtime_utc <- NA
   }
   
   trimtime_list <-
     list(
       TimeVariable = c(
-        'TEMPstarttime_utc',
-        'TEMPendtime_utc',
-        'HDOstarttime_utc',
-        'HDOendtime_utc',
-        'DOstarttime_utc',
-        'DOendtime_utc',
-        'SALstarttime_utc',
-        'SALendtime_utc'
+        'temp_starttime_utc',
+        'temp_endtime_utc',
+        'hdo_starttime_utc',
+        'hdo_endtime_utc',
+        'do_starttime_utc',
+        'do_endtime_utc',
+        'sal_starttime_utc',
+        'sal_endtime_utc'
       ),
       DateTime = c(
-        TEMPstarttime_utc,
-        TEMPendtime_utc,
-        HDOstarttime_utc,
-        HDOendtime_utc,
-        DOstarttime_utc,
-        DOendtime_utc,
-        SALstarttime_utc,
-        SALendtime_utc
+        temp_starttime_utc,
+        temp_endtime_utc,
+        hdo_starttime_utc,
+        hdo_endtime_utc,
+        do_starttime_utc,
+        do_endtime_utc,
+        sal_starttime_utc,
+        sal_endtime_utc
       )
     ) 
     
