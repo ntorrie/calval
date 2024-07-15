@@ -24,7 +24,7 @@ assign_trim_start_hdo <- function(log){
 
 #' Create variable for HOBO DO test end time in UTC
 #'
-#' @param Log Metadata log with deployment_datetime column
+#' @param log Metadata log with deployment_datetime column
 #'
 #' @return Returns hdo_endtime_utc
 #' 
