@@ -4,10 +4,10 @@
 \alias{create_val_log}
 \title{Create metadata log from Tracking Google sheet}
 \usage{
-create_val_log(Tracking)
+create_val_log(tracking)
 }
 \arguments{
-\item{Tracking}{Dataframe created from downloaded CalVal Tracking Google sheet}
+\item{tracking}{Dataframe created from downloaded CalVal Tracking Google sheet}
 }
 \value{
 Returns metadata log with updated column names and new columns with deployment and retrieval datetime in Atlantic timezone
