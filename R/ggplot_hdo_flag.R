@@ -1,6 +1,6 @@
 #' Plot HOBO DO validation data, colorize points by HOBO DO flag
 #'
-#' @param final_HDO Dataframe filtered for HDO test data
+#' @param final_hobo_do Dataframe filtered for HDO test data
 #' @param point_size to set size of ggplot points
 #'
 #' @return Returns a ggplot object of HOBO DO validation data colorized based on HOBO DO flag
@@ -13,14 +13,14 @@
 #'
 
 
-ggplot_hdo_flag <- function(final_HDO,
+ggplot_hdo_flag <- function(final_hobo_do,
                             point_size = 0.75) {
   v <-
-    ggplot(final_HDO,
+    ggplot(final_hobo_do,
            aes(
              x = timestamp_utc,
              y = dissolved_oxygen_uncorrected_mg_per_l,
-             color = as.factor(FLAG)
+             color = as.factor(flag)
            )) +
     geom_point(size = point_size) +
     scale_color_manual(values = c('Green', 'Red')) +
@@ -29,7 +29,7 @@ ggplot_hdo_flag <- function(final_HDO,
                 alpha = 0.3,
                 color = NA)
   
-  v <- v  + labs(color = 'FLAG')
+  v <- v  + labs(color = 'flag')
   v
 }
 
