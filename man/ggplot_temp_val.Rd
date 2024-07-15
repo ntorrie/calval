@@ -2,7 +2,7 @@
 % Please edit documentation in R/ggplot_temp_val.R
 \name{ggplot_temp_val}
 \alias{ggplot_temp_val}
-\title{Plot TEMP validation data, colorize points by sensor serial #}
+\title{Plot temp validation data, colorize points by sensor serial #}
 \usage{
 ggplot_temp_val(final_temp, point_size = 0.75)
 }
@@ -15,7 +15,7 @@ ggplot_temp_val(final_temp, point_size = 0.75)
 Returns a ggplot object of temperature validation data colorized based on sensor serial #
 }
 \description{
-Plot TEMP validation data, colorize points by sensor serial #
+Plot temp validation data, colorize points by sensor serial #
 }
 \author{
 Nicole Torrie
