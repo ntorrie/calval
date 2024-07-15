@@ -1,4 +1,4 @@
-#' Plot TEMP validation data, colorize points by sensor serial #
+#' Plot temp validation data, colorize points by sensor serial #
 #'
 #' @param final_temp Dataframe filtered for temperature test data
 #' @param point_size Argument to set size of ggplot points

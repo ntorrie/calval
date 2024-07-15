@@ -21,7 +21,7 @@ ggplot_temp_flag <- function(final_temp,
            aes(
              x = timestamp_utc,
              y = temperature_degree_c,
-             color = as.factor(FLAG)
+             color = as.factor(flag)
            )) +
     geom_point(size = point_size) +
     scale_color_manual(values = c('Green', 'Red')) +
@@ -33,6 +33,6 @@ ggplot_temp_flag <- function(final_temp,
                  alpha = 0.3,
                  color = "grey87")
   
-  r <- r  + labs(color = 'FLAG')
+  r <- r  + labs(color = 'flag')
   r
 }
