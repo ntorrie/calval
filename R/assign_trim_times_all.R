@@ -1,6 +1,8 @@
 #' Create table of test start and end times for each variable
 #'
 #' @param var_list list of variables present in the dataset
+#' 
+#' @param log Metadata log with deployment_datetime and retrieval_datetime columns
 #'
 #' @return a data frame of all test start and end times in utc
 #' 
@@ -13,35 +15,35 @@
 #' 
 
 #to assign trim times for all variables at once
-assign_trim_times_all <- function(var_list){
+assign_trim_times_all <- function(var_list, log){
   
   if("Temp" %in% var_list){
-    TEMPstarttime_utc <- assign_trim_start_temp(Log)
-    TEMPendtime_utc <- assign_trim_end_temp(Log)
+    TEMPstarttime_utc <- assign_trim_start_temp(log)
+    TEMPendtime_utc <- assign_trim_end_temp(log)
   } else {
     TEMPstarttime_utc <- NA
     TEMPendtime_utc <- NA
   }
   
   if("HDO" %in% var_list){
-    HDOstarttime_utc <- assign_trim_start_hdo(Log)
-    HDOendtime_utc <- assign_trim_end_hdo(Log)
+    HDOstarttime_utc <- assign_trim_start_hdo(log)
+    HDOendtime_utc <- assign_trim_end_hdo(log)
   } else{
     HDOstarttime_utc <- NA
     HDOendtime_utc <- NA
   }
   
   if("DO" %in% var_list){
-    DOstarttime_utc <- assign_trim_start_do(Log)
-    DOendtime_utc <- assign_trim_end_do(Log)
+    DOstarttime_utc <- assign_trim_start_do(log)
+    DOendtime_utc <- assign_trim_end_do(log)
   } else{
     DOstarttime_utc <- NA
     DOendtime_utc <- NA
   }
   
   if("SAL" %in% var_list){
-    SALstarttime_utc <- assign_trim_start_sal(Log)
-    SALendtime_utc <- assign_trim_end_sal(Log)
+    SALstarttime_utc <- assign_trim_start_sal(log)
+    SALendtime_utc <- assign_trim_end_sal(log)
   } else{
     SALstarttime_utc <- NA
     SALendtime_utc <- NA
