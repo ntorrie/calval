@@ -20,6 +20,18 @@ recording within an appropriate range. Testing is repeated after sensors
 are retrieved from deployment to check for sensor drift and biofouling
 impacts.
 
+`calval` is compatible with the following sensor models:
+
+| Sensor                                                                                                | Variable(s) Measured                             |
+|:------------------------------------------------------------------------------------------------------|:-------------------------------------------------|
+| [aquaMeasure DOT](https://www.innovasea.com/wp-content/uploads/2023/12/AQI_Spec_Sheet.08.12.23.pdf)   | Temperature, Dissolved Oxygen Percent Saturation |
+| [aquaMeasure SAL](https://www.innovasea.com/wp-content/uploads/2023/12/AQI_Spec_Sheet.08.12.23.pdf)   | Temperature, Salinity                            |
+| [Vemco VR2AR & VR2AR-X](https://go.innovasea.com/vr2ar_manual.pdf)                                    | Temperature                                      |
+| [Hobo DO U26-001](https://www.onsetcomp.com/resources/documentation/15603-e-man-u26x)                 | Temperature, Dissolved Oxygen mg/L               |
+| [Hobo Temp U22-001](https://www.onsetcomp.com/resources/documentation/21537-mx2203-and-mx2204-manual) | Temperature                                      |
+
+<br> <br>
+
 ## Installation
 
 You can install the development version of calval from

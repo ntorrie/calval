@@ -69,5 +69,36 @@ For validation tests of temperature and dissolved oxygen measured in mg/L, senso
 
 Upon completion of the validation tests, data from each sensor is offloaded and evaluated using the calval package functions. For each variable, an acceptable sensor observation should fall within the range of median observation +/- the sensor-specific precision range. The precision for each sensor type varies slightly. Sensors that pass the tests are cleared for deployment. Any sensor that records outside of the acceptable range for > 10 % of the test will be re-calibrated (if applicable) and re-validated. If a sensor fails more than 2 consecutive validation tests it will be sent back to the manufacturer for troubleshooting.
 
+```{r, echo=FALSE,caption= "Sensor Models included"}
+tibble(
+  SENSORS = c(
+    "aquaMeasure DOT", 
+    "aquaMeasure SAL",
+    "Vemco VR2AR & VR2AR-X",
+    "Hobo DO U26-001",
+    "Hobo Temp U22-001"
+  ),
+  urls = c(
+    "https://www.innovasea.com/wp-content/uploads/2023/12/AQI_Spec_Sheet.08.12.23.pdf",
+    "https://www.innovasea.com/wp-content/uploads/2023/12/AQI_Spec_Sheet.08.12.23.pdf",
+    "https://go.innovasea.com/vr2ar_manual.pdf",
+    "https://www.onsetcomp.com/resources/documentation/15603-e-man-u26x",
+    "https://www.onsetcomp.com/resources/documentation/21537-mx2203-and-mx2204-manual"
+  ),
+  `Variable(s) Measured` = c(
+    "Temperature, Dissolved Oxygen Percent Saturation",
+    "Temperature, Salinity",
+    "Temperature", 
+    "Temperature, Dissolved Oxygen mg/L", 
+    "Temperature"
+  )
+) %>%
+  mutate(Sensor = glue::glue("[{SENSORS}]({urls})")) %>%
+  select(Sensor, `Variable(s) Measured`) %>%
+  kable(align = "ll", format = "pipe")
+```
+
+<br>
+<br>
 ## Post-Deployment Validation Tests
 After sensors are retrieved from deployment, they undergo post-deployment validation testing following the same procedures as the pre-deployment validation test. Results from the post-deployment validation tests indicate whether the sensor data retrieved during the sensor deployment may have been impacted by sensor drift or biofouling.
