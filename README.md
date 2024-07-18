@@ -12,10 +12,10 @@ v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/li
 [![R-CMD-check](https://github.com/ntorrie/calval/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/ntorrie/calval/actions/workflows/R-CMD-check.yaml)
 <!-- badges: end -->
 
-The calval package contains a collection of functions to assist with the
-flagging and visualization of validation data collected during quality
-assurance testing of CMAR Coastal Monitoring Program sensors. Sensor
-testing occurs prior to sensor deployment to ensure sensors are
+The `calval` package contains a collection of functions to assist with
+the flagging and visualization of validation data collected during
+quality assurance testing of CMAR Coastal Monitoring Program sensors.
+Sensor testing occurs prior to sensor deployment to ensure sensors are
 recording within an appropriate range. Testing is repeated after sensors
 are retrieved from deployment to check for sensor drift and biofouling
 impacts.
@@ -46,8 +46,8 @@ The sensors are left to record for a minimum of 6 hours (Figure 1). Upon
 completion of the validation tests, data from each sensor is offloaded
 and evaluated using the calval package functions.
 
-<img src="man/figures/do_bucket_test.jpg" width="75%" height="75%" style="display: block; margin: auto;" />
-Figure 1. Dissolved oxygen percent saturation test <br>
+<img src="man/figures/do_bucket_test.jpg" width="50%" height="50%" style="display: block; margin: auto;" />
+Figure 1. Dissolved oxygen percent saturation test <br> <br>
 
 The precision for these dissolved oxygen sensors is +/-5 % (InnovaSea
 2021). Since the the sensors in the test environment are in
