@@ -30,8 +30,6 @@ impacts.
 | [Hobo DO U26-001](https://www.onsetcomp.com/resources/documentation/15603-e-man-u26x)                 | Temperature, Dissolved Oxygen mg/L               |
 | [Hobo Temp U22-001](https://www.onsetcomp.com/resources/documentation/21537-mx2203-and-mx2204-manual) | Temperature                                      |
 
-<br> <br>
-
 ## Installation
 
 You can install the development version of calval from
@@ -96,6 +94,15 @@ acceptable range for \> 10 % of the test will be re-calibrated (if
 applicable) and re-validated. If a sensor fails more than 2 consecutive
 validation tests it will be sent back to the manufacturer for
 troubleshooting.
+
+| TEST    | Test Environment                                                                        | Minimum Test Duration | Variable(s) Tested | Unit                           | Validation Algorithm                                            | Loggers Tested                                                                                   |
+|:--------|:----------------------------------------------------------------------------------------|:----------------------|:-------------------|:-------------------------------|:----------------------------------------------------------------|:-------------------------------------------------------------------------------------------------|
+| Test 1  | Air-tight environment with water saturated air at 100% humidity. Sensors not submerged. | 6 hours               | dissolved oxygen   | percent saturation             | 100% dissolved oxygen +/- sensor accuracy range                 | aquaMeasure DOT                                                                                  |
+| Test 2a | Insulated tank of fresh water. Sensors fully submerged.                                 | 12 hours              | temperature        | degrees celsius                | Median temperature +/- sensor accuracy range                    | aquaMeasure DOT, Hobo DO U26-001, Hobo Temp U22-001, Vemco VR2AR, Vemco VR2AR-X                  |
+| Test 2a | Insulated tank of fresh water. Sensors fully submerged.                                 | 12 hours              | dissolved oxygen   | mg/L                           | Median dissolved oxygen concentration +/- sensor accuracy range | Hobo DO U26-001                                                                                  |
+| Test 2b | Insulated tank of sea water. Sensors fully submerged.                                   | 12 hours              | temperature        | degrees celsius                | Median temperature +/- sensor accuracy range                    | aquaMeasure DOT, Hobo DO U26-001, Hobo Temp U22-001, Vemco VR2AR, Vemco VR2AR-X, aquaMeasure SAL |
+| Test 2b | Insulated tank of sea water. Sensors fully submerged.                                   | 12 hours              | dissolved oxygen   | mg/L                           | Median dissolved oxygen concentration +/- sensor accuracy range | Hobo DO U26-001                                                                                  |
+| Test 2b | Insulated tank of sea water. Sensors fully submerged.                                   | 12 hours              | salinity           | practical salinity units (PSU) | Median salinity +/- sensor accuracy range                       | aquaMeasure SAL                                                                                  |
 
 ## Post-Deployment Validation Tests
 
