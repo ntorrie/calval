@@ -16,9 +16,9 @@ The `calval` package contains a collection of functions to assist with
 the flagging and visualization of validation data collected during
 quality assurance testing of CMAR Coastal Monitoring Program sensors.
 Sensor testing occurs prior to sensor deployment to ensure sensors are
-recording within an appropriate range. Testing is repeated after sensors
-are retrieved from deployment to check for sensor drift and biofouling
-impacts.
+recording within an appropriate range for each variable. Testing is
+repeated after sensors are retrieved from deployment to check for sensor
+drift and biofouling impacts.
 
 `calval` is compatible with the following sensor models:
 
@@ -46,22 +46,22 @@ devtools::install_github("ntorrie/calval")
 
 Prior to deployment, sensors that can be calibrated are calibrated
 according to their specific sensor manual. Each sensor is then subjected
-to a validation test(s), which differ depending on the variables
-measured.
+to a validation test for each variable that it measures.
 
 ### Test 1
 
 The first validation test (Test 1) evaluates accuracy of dissolved
 oxygen percent saturation measurements. For a validation test of
-dissolved oxygen measured in units of percent saturation, sensors are
-set to record at 10 minute intervals and placed in an air-tight
-environment with water-saturated air at 100 % humidity. The sensors are
-left to record for a minimum of 6 hours (Figure 1). Upon completion of
-the validation tests, data from each sensor is offloaded and evaluated
-using the `calval` package functions.
+dissolved oxygen percent saturation, sensors are set to record at 10
+minute intervals and placed in an air-tight environment with
+water-saturated air at 100 % humidity. The sensors are left to record
+for a minimum of 6 hours (Figure 1). Upon completion of the validation
+tests, data from each sensor are offloaded and evaluated using the
+`calval` package functions.
 
 <img src="man/figures/do_bucket_test.jpg" width="50%" height="50%" style="display: block; margin: auto;" />
-Figure 1. Dissolved oxygen percent saturation test (Test 1) <br> <br>
+Figure 1. Dissolved oxygen percent saturation test environment (Test 1)
+<br> <br>
 
 The precision for these dissolved oxygen sensors is +/-5 % (InnovaSea
 2021). Since the the sensors in the test environment are in
@@ -80,39 +80,41 @@ re-calibration and further testing.
 
 ### Test 2a or 2b
 
-The second validation test evaluates accuracy of temperature, dissolved
-oxygen mg/L (when applicable), and salinity (when applicable)
-measurements. If no salinity sensors are present in the test batch, all
-sensors undergo Test 2a only. If salinity sensors are present in the
-test batch, all sensors undergo Test 2b only.
+After Test 1 is completed (when applicable), the second validation test
+begins. Test 2 evaluates accuracy of temperature, dissolved oxygen mg/L
+(when applicable), and salinity (when applicable) measurements. If no
+salinity sensors are present in the test batch, all sensors undergo Test
+2a only. If salinity sensors are present in the test batch, all sensors
+undergo Test 2b only.
 
-For validation Test 2a (temperature and dissolved oxygen measured in
-mg/L (where applicable)), sensors are set to record at 10 - 15 minute
-intervals and submerged in a well insulated tank of fresh water for a
-minimum of 12 hours. For validation Test 2b (temperature, salinity, and
-dissolved oxygen measured in mg/L (where applicable)), the same test
-setup and duration is used as test 2a, except sea water is used instead
-of fresh water. A minimum of 4 sensors are required in the test batch to
-ensure a valid test for both test 2a and 2b. When possible, a mix of
-sensor types are included in each test batch.
+For validation Test 2a (evaluating temperature and dissolved oxygen
+measured in mg/L (when applicable)), sensors are set to record at 10 -
+15 minute intervals and submerged in a well insulated tank of fresh
+water for a minimum of 12 hours. For validation Test 2b (evaluating
+salinity, temperature, and dissolved oxygen measured in mg/L (when
+applicable)), the same test setup and duration is used as in Test 2a,
+except sea water is used instead of fresh water. A minimum of 4 sensors
+are required in the test batch to ensure a valid test for both Test 2a
+and 2b. When possible, a mix of sensor types are included in each test
+batch.
 
-Upon completion of Test 2a or 2b, data from each sensor is offloaded and
-evaluated using the `calval` package functions. For each variable, an
-acceptable sensor observation should fall within the range of median
-observation +/- the sensor-specific precision range. The precision for
-each sensor type varies slightly. Any sensor that records outside of the
-acceptable range for \> 10 % of the test duration will be re-calibrated
-(if applicable) and re-validated. If a sensor fails more than 2
-consecutive validation tests it will be sent back to the manufacturer
-for troubleshooting. Sensors that pass the tests are cleared for
-deployment.
+Upon completion of Test 2a or 2b, data from each sensor are offloaded
+and evaluated using the `calval` package functions. For each variable,
+an acceptable observation should fall within the range of median
+observation +/- the sensor-specific accuracy range. The accuracy range
+for each sensor type varies slightly. Any sensor that records outside of
+the acceptable range for \> 10 % of the test duration will be
+re-calibrated (when applicable) and re-validated. If a sensor fails more
+than 2 consecutive validation tests it will be sent back to the
+manufacturer for troubleshooting. Sensors that pass the tests are
+cleared for deployment.
 
 ## Post-Deployment Validation Tests
 
 After sensors are retrieved from deployment, they undergo
 post-deployment validation testing following the same procedures as the
 pre-deployment validation tests. Results from the post-deployment
-validation tests indicate whether the sensor data retrieved during the
+validation tests indicate whether the sensor data recorded during the
 sensor deployment may have been impacted by sensor drift or biofouling.
 
 ## Validation Test Summary Table
