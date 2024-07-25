@@ -14,11 +14,12 @@ v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/li
 
 The `calval` package contains a collection of functions to assist with
 the flagging and visualization of validation data collected during
-quality assurance testing of CMAR Coastal Monitoring Program sensors.
-Sensor testing occurs prior to sensor deployment to ensure sensors are
-recording within an appropriate range for each variable. Testing is
-repeated after sensors are retrieved from deployment to check for sensor
-drift and biofouling impacts.
+quality assurance testing of the [Centre for Marine Applied Research
+(CMAR)](https://cmar.ca/coastal-monitoring-program/) Coastal Monitoring
+Program sensors. Sensor testing occurs prior to sensor deployment to
+ensure sensors are recording within an appropriate range for each
+variable. Testing is repeated after sensors are retrieved from
+deployment to check for sensor drift and biofouling impacts.
 
 `calval` is compatible with the following sensor models:
 
