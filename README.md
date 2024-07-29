@@ -110,14 +110,15 @@ than 2 consecutive validation tests it will be sent back to the
 manufacturer for troubleshooting. Sensors that pass the tests are
 cleared for deployment.
 
-<img src="man/figures/post0019_temp_flag.png" width="75%" height="75%" style="display: block; margin: auto;" />
+<img src="man/figures/post0019_temp_flag.png" width="100%" height="75%" style="display: block; margin: auto;" />
 Figure 3. Visualizing results of a temperature test for 20 sensors.
 Observations recorded within an acceptable range for each sensor are
-shown in $${\color{green}Green}$$, while observations recorded outside
-of an acceptable range are shown in $${\color{red}Red}$$.
+shown in Green, while observations recorded outside of an acceptable
+range are shown in Red.
 
 <br> <br>
-<img src="man/figures/post0019_temp_flag_sensors.png" width="75%" height="75%" style="display: block; margin: auto;" />
+<img src="man/figures/post0019_temp_flag_sensors.png" width="100%" height="75%" style="display: block; margin: auto;" />
+
 Figure 4. Visualizing results of a temperature test for 20 sensors.
 Sensor 548042 recorded outside of an acceptable range for 71.3% of the
 test period, and was therefore flagged for re-calibration and further

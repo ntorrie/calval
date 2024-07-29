@@ -107,16 +107,17 @@ For validation Test 2a (evaluating temperature and dissolved oxygen measured in 
 
 Upon completion of Test 2a or 2b, data from each sensor are offloaded and evaluated using the `calval` package functions. For each variable, an acceptable observation should fall within the range of median observation +/- the sensor-specific accuracy range. The accuracy range for each sensor type varies slightly. Any sensor that records outside of the acceptable range for > 10 % of the test duration will be re-calibrated (when applicable) and re-validated. If a sensor fails more than 2 consecutive validation tests it will be sent back to the manufacturer for troubleshooting. Sensors that pass the tests are cleared for deployment.
 
-```{r, echo=FALSE, out.height='75%', out.width='75%', fig.align='center', dpi=600}
+```{r, echo=FALSE, out.height='75%', out.width='100%', fig.align='center', dpi=600}
 knitr::include_graphics("man/figures/post0019_temp_flag.png")
 ```
-Figure 3. Visualizing results of a temperature test for 20 sensors. Observations recorded within an acceptable range for each sensor are shown in $${\color{green}Green}$$, while observations recorded outside of an acceptable range are shown in $${\color{red}Red}$$.
+Figure 3. Visualizing results of a temperature test for 20 sensors. Observations recorded within an acceptable range for each sensor are shown in Green, while observations recorded outside of an acceptable range are shown in Red.
 
 <br>
 <br>
-```{r, echo=FALSE, out.height='75%', out.width='75%', fig.align='center', dpi=600}
+```{r, echo=FALSE, out.height='75%', out.width='100%', fig.align='center', dpi=600}
 knitr::include_graphics("man/figures/post0019_temp_flag_sensors.png")
 ```
+
 Figure 4. Visualizing results of a temperature test for 20 sensors. Sensor 548042 recorded outside of an acceptable range for 71.3% of the test period, and was therefore flagged for re-calibration and further testing.
 
 
