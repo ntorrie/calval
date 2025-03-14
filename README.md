@@ -3,6 +3,12 @@
 
 # calval
 
+<span style="color: red;">**Note: This is a depreciated version of the
+calval package. As of January 2025 this version will no longer be
+updated. Please refer to the calval repository owned by dempsey-CMAR
+[here](https://github.com/dempsey-CMAR/calval) for the most recent
+version.**</span>
+
 <img src="man/figures/README-calval_hexsticker.png" width="25%" style="display: block; margin: auto;" />
 
 <!-- badges: start -->

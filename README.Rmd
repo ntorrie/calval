@@ -25,6 +25,10 @@ repo <- "ntorrie/calval"
 
 # calval
 
+<span style ="color: red;">**Note: This is a depreciated version of the calval package. As of January 2025 this version will no longer be updated. Please refer to the calval repository owned by dempsey-CMAR [here](https://github.com/dempsey-CMAR/calval) for the most recent version.**</span>
+
+
+
 ```{r, echo=FALSE, out.width="25%", fig.align='center'}
 knitr::include_graphics("man/figures/README-calval_hexsticker.png")
 ```
